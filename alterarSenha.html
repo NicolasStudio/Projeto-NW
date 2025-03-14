@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16"  href="Img/policia-militar-sp-logo.png">
+    <meta name="author" content="Nicolas de Almeida Sousa">
+    <meta name="author" content="Weasley Corrêa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NW</title>
+
+    <link rel="stylesheet" href="CSS/padrao.css">
+    <link rel="stylesheet" href="CSS/infoUsers.css">
+    <link rel="stylesheet" href="CSS/alert.css">
+    <script src="JS/padrao.js"></script>
+</head>
+<body>
+
+    <header class="cabecalho">
+        <div class="boxImg">
+            <img src="Img/policia-militar-sp-logo.png" alt="Logo da PM" onclick="home()">
+        </div>
+    
+        <div class="boxMenu">
+            <h3 class="saudacao">Olá,</h3>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">
+                    <span class="usuario">FULANO BLA BLA BLA DE SOUSA</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="infoUsuario.html" class="linhaMenuTopo">Informações do usuário</a>
+                    <a href="Index.html" class="linhaMenuTopo">Sair</a>
+                </div>
+            </li>
+        </div>
+    </header>
+
+    <div class="boxAlertError">
+        <h4>Houve tal coisa inesperada: <span>Erro X</span></h4>
+    </div>
+
+    <div class="boxAlertSucess">
+        <h4>Cadastro realizado com: <span>Exito</span></h4>
+    </div>
+
+    <div class="container-cadastro">
+        
+        <div class="box-alterar-senha">
+
+            <center><h3>Troca de senha </h3></center>
+
+            <label for="senhaAntiga" class="lblCad">Senha antiga: </label>
+            <input type="text" name="" class="inputDadosSenha" id="" placeholder="Digite sua senha antiga..."  required>
+
+            <label for="senha1" class="lblCad">Nova senha: </label>
+            <input type="text" name="" class="inputDadosSenha" id="" placeholder="Nova senha..."  required>
+            
+            <label for="senha2" class="lblCad">Repita a senha: </label>
+            <input type="text" name="" class="inputDadosSenha" id="" placeholder="Repita sua senha..."  required>
+
+            <button class="btnAlterarSenha">Alterar</button>
+
+        </div>
+    </div>
+
+<!-- Footer -->
+<section id="contatos">
+    <footer class="rodape">
+        <h1 class="titleRodape">Alguma dúvida?</h1>
+        <p class="txtRodape">Obrigado pela sua atenção, aqui vão alguns dos meus contatos:</p>
+        <p class="txtRodape">Email: nicolasalmeida1@yahoo.com</p>
+        <p class="txtRodape">WhatsApp: (11) 94137-7733</p>
+        <div class="boxRodapeImg">
+            <a href="https://www.linkedin.com/in/nicolas-almeida-376284244/"><img class="redeImg" src="Img/linkedin2.png" alt="LinkedIn"></a>
+            <a href="https://www.facebook.com/nicolas.almeida.1042/"><img class="redeImg" src="Img/facebook2.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/nicolas29sousa/"><img class="redeImg" src="Img/instagram2.png" alt="Instagram"></a>
+            <a href="https://github.com/NicolasStudio"><img class="redeImg" src="Img/github2.png" alt="GitHub"></a>
+            <a href="https://api.whatsapp.com/send?phone=11941377733"><img class="redeImg" src="Img/whatsapp.png" alt="WhatsApp"></a>
+        </div>
+        <p class="txtRodape">©Nicolas de Almeida Sousa. Todos os direitos reservados.</p>
+
+        <center class="linkDireitosAutorais">
+            <a href="https://www.flaticon.com/br/icones-gratis/linkedin" title="linkedin ícones">Linkedin ícones criados por IconsBox - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/facebook" title="facebook ícones">Facebook ícones criados por justicon - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/logotipo-do-instagram" title="logotipo do instagram ícones">Logotipo do instagram ícones criados por justicon - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/github" title="github ícones">Github ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/whatsapp" title="whatsapp ícones">Whatsapp ícones criados por Freepik - Flaticon</a>
+        </center>
+    </footer>
+</section>
+
+</body>
+</html>
