@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16"  href="Img/policia-militar-sp-logo.png">
+    <meta name="author" content="Nicolas de Almeida Sousa">
+    <meta name="author" content="Weasley Corrêa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NW</title>
+
+    <link rel="stylesheet" href="CSS/padrao.css">
+    <link rel="stylesheet" href="CSS/infoUsers.css">
+    <link rel="stylesheet" href="CSS/alert.css">
+    <script src="JS/padrao.js"></script>
+</head>
+<body>
+
+    <header class="cabecalho">
+        <div class="boxImg">
+            <img src="Img/policia-militar-sp-logo.png" alt="Logo da PM" onclick="home()">
+        </div>
+    
+        <div class="boxMenu">
+            <h3 class="saudacao">Olá,</h3>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">
+                    <span class="usuario">FULANO BLA BLA BLA DE SOUSA</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="alterarSenha.html" class="linhaMenuTopo">Troca de senha</a>
+                    <a href="Index.html" class="linhaMenuTopo">Sair</a>
+                </div>
+            </li>
+        </div>
+    </header>
+
+    <div class="boxAlertError">
+        <h4>Houve tal coisa inesperada: <span>Erro X</span></h4>
+    </div>
+
+    <div class="boxAlertSucess">
+        <h4>Cadastro realizado com: <span>Exito</span></h4>
+    </div>
+    
+    <div class="container-info-users">
+
+        <div class="box-info-users">
+
+            <center><h3>Informações do usuário </h3></center>
+
+            
+            <label for="nome" class="lblCad">Nome Completo: </label>
+            <input type="text" name="" class="inputDados" id="">
+
+            <label for="email" class="lblCad">E-mail: </label>
+            <input type="email" name="" class="inputDados" id="" readonly>
+
+            <label for="cpf" class="lblCad">CPF: </label>
+            <input type="text" id="cpf" name="cpf" maxlength="14" oninput="mascararCPF(this)" class="inputDadosNumber" readonly><br>
+
+
+            <label for="telefone" class="lblCad">Telefone: </label>
+            <input type="tel" name="" class="inputDadosNumber" id="" min="8" max="11" placeholder="(xx) xxxxx-xxxx" required><br>
+
+            <label for="dataNasc" class="lblCad">Data de Nasc.: </label>
+            <input type="date" name="" class="inputDadosNumber" id=""  readonly>
+
+            <hr>
+
+            <center><h3>Endereço </h3><br></center>
+
+            <label for="cep" class="lblCad">CEP: </label>
+            <input type="text" id="cep" name="cep" maxlength="9" oninput="mascararCEP(this); buscarCEP(this.value);" class="inputDadosNumber" placeholder="Digite seu CEP..." required><br>
+
+
+            <label for="rua" class="lblCad">Longradouro/Rua: </label>
+            <input type="text" name="logradouro" class="inputDados" id="logradouro" placeholder="Digite seu Endereço..." required>
+
+            <label for="numero" class="lblCad">Nº: </label>
+            <input type="number" name="" class="inputDadosNumber" id="" placeholder="Ex: 123" required><br>
+
+            <label for="bairro" class="lblCad">Bairro: </label>
+            <input type="text" name="bairro" class="inputDados" id="bairro" placeholder="Digite seu Bairro ..." required>
+
+            <label for="cidade" class="lblCad">Cidade: </label>
+            <input type="text" name="cidade" class="inputDados" id="cidade" placeholder="Digite sua cidade ..." required>
+
+            <label for="uf" class="lblCad">UF: </label>
+            <input type="text" name="estado" class="inputDadosNumber" id="estado" placeholder="Ex: SP" required><br>
+
+            <button class="btnAlterar">Salvar alterações</button>
+
+        </div>
+
+    </div>
+    
+
+
+
+
+
+
+
+<!-- Footer -->
+<section id="contatos">
+    <footer class="rodape">
+        <h1 class="titleRodape">Alguma dúvida?</h1>
+        <p class="txtRodape">Obrigado pela sua atenção, aqui vão alguns dos meus contatos:</p>
+        <p class="txtRodape">Email: nicolasalmeida1@yahoo.com</p>
+        <p class="txtRodape">WhatsApp: (11) 94137-7733</p>
+        <div class="boxRodapeImg">
+            <a href="https://www.linkedin.com/in/nicolas-almeida-376284244/"><img class="redeImg" src="Img/linkedin2.png" alt="LinkedIn"></a>
+            <a href="https://www.facebook.com/nicolas.almeida.1042/"><img class="redeImg" src="Img/facebook2.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/nicolas29sousa/"><img class="redeImg" src="Img/instagram2.png" alt="Instagram"></a>
+            <a href="https://github.com/NicolasStudio"><img class="redeImg" src="Img/github2.png" alt="GitHub"></a>
+            <a href="https://api.whatsapp.com/send?phone=11941377733"><img class="redeImg" src="Img/whatsapp.png" alt="WhatsApp"></a>
+        </div>
+        <p class="txtRodape">©Nicolas de Almeida Sousa. Todos os direitos reservados.</p>
+
+        <center class="linkDireitosAutorais">
+            <a href="https://www.flaticon.com/br/icones-gratis/linkedin" title="linkedin ícones">Linkedin ícones criados por IconsBox - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/facebook" title="facebook ícones">Facebook ícones criados por justicon - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/logotipo-do-instagram" title="logotipo do instagram ícones">Logotipo do instagram ícones criados por justicon - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/github" title="github ícones">Github ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/whatsapp" title="whatsapp ícones">Whatsapp ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/cadastro" title="cadastro ícones">Cadastro ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/big-data" title="big data ícones">Big data ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/troca-de-dados" title="troca de dados ícones">Troca de dados ícones criados por smashingstocks - Flaticon</a>
+        </center>
+    </footer>
+</section>
+
+</body>
+</html>

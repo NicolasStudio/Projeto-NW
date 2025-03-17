@@ -1,0 +1,1638 @@
+<!-- <?php 
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $response = [
+            "protocolo" => $_POST["protocolo"] ?? "",
+            "dataHora" => $_POST["dataHora"] ?? "",
+            "analista" => $_POST["analista"] ?? "",
+            "solicitante" => $_POST["solicitante"] ?? "",
+            "telefoneSolicitante" => $_POST["telefoneSolicitante"] ?? "",
+            "afetado" => $_POST["afetado"] ?? "",
+            "telefoneAfetado" => $_POST["telefoneAfetado"] ?? "",
+            "contato" => $_POST["contato"] ?? "",
+            "opm" => $_POST["opm"] ?? "",
+            "endereco" => $_POST["endereco"] ?? "",
+            "tituloChamado" => $_POST["tituloChamado"] ?? "",
+            "descricao" => $_POST["descricao"] ?? "",
+            "comentarioInterno" => $_POST["comentarioInterno"] ?? "",
+            "servico" => $_POST["servico"] ?? "",
+            "categoria" => $_POST["categoria"] ?? "",
+            "subCategoria" => $_POST["subCategoria"] ?? "",
+            "anexos" => []
+        ];
+
+        // Processamento dos arquivos anexados
+        if (!empty($_FILES["anexos"])) {
+            foreach ($_FILES["anexos"]["name"] as $key => $name) {
+                $tmp_name = $_FILES["anexos"]["tmp_name"][$key];
+                $destino = "uploads/" . basename($name);
+                move_uploaded_file($tmp_name, $destino);
+                $response["anexos"][] = $destino;
+            }
+        }
+
+        echo json_encode($response);
+    }
+?>
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16"  href="Img/policia-militar-sp-logo.png">
+    <meta name="author" content="Nicolas de Almeida Sousa">
+    <meta name="author" content="Weasley Corrêa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NW</title>
+
+    <link rel="stylesheet" href="CSS/padrao.css">
+    <link rel="stylesheet" href="CSS/cadastroChamado.css">
+    <script src="JS/padrao.js"></script>
+    <script src="JS/cadastrarChamado.js"></script>
+</head>
+<body>
+
+    <header class="cabecalho">
+        <div class="boxImg">
+            <img src="Img/policia-militar-sp-logo.png" alt="Logo da PM" onclick="home()">
+        </div>
+    
+        <div class="boxMenu">
+            <h3 class="saudacao">Olá,</h3>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">
+                    <span class="usuario">FULANO BLA BLA BLA DE SOUSA</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="infoUsuario.html" class="linhaMenuTopo">Informações do usuário</a>
+                    <a href="alterarSenha.html" class="linhaMenuTopo">Troca de senha</a>
+                    <a href="Index.html" class="linhaMenuTopo">Sair</a>
+                </div>
+            </li>
+        </div>
+    </header>
+ 
+    <form id="chamadoForm" enctype="multipart/form-data">   
+    
+        <section class="cadastro">
+            <div class="containerCadastro">
+                <div class="infoPrimary">
+                    <p><b>Protocolo: </b> <span class="protocolo">Contingência</span></p> 
+                    <span class="dataHora">Data e Hora</span> 
+                    <span class="analista">Usuário</span>
+                </div>
+                
+                <div class="infoContainer">
+                <div class="infoSecond">
+                        <div class="inputGroup">
+                            <label for="solicitante" class="lblCad">R.E do Solicitante:</label>
+                            <input type="text" id="solicitante" class="inputCad" required>
+                        </div>
+                    
+                        <div class="inputGroup">
+                            <label for="telefoneSolicitante" class="lblCad">Telefone:</label>
+                            <input type="tel" id="telefoneSolicitante" class="inputCad" required>                            
+                        </div>
+                    
+                        <div class="inputGroup">
+                            <label for="afetado" class="lblCad">R.E do Afetado:</label>
+                            <input type="text" id="afetado" class="inputCad" required>
+                        </div>
+                    
+                        <div class="inputGroup">
+                            <label for="telefoneAfetado" class="lblCad">Telefone:</label>
+                            <input type="tel" id="telefoneAfetado" class="inputCad" required>
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="contato" class="lblCad">Forma de Contato:</label>
+                            <select id="contato" class="inputCad">
+                                <option value="null"></option>
+                                <option value="chat">Chat</option>
+                                <option value="email">E-mail</option>
+                                <option value="oficio">Ofício</option>
+                                <option value="presencial">Presencial</option>
+                                <option value="telefone">Telefone</option>
+                            </select>
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="opm" class="lblCad">OPM:</label>
+                            <input type="text" id="opm" class="inputCad" required>
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="endereco" class="lblCad">Endereço:</label>
+                            <textarea class="inputCad2" rows="4" style="resize: none; overflow-y: auto;"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="infoThird">
+                        <div class="inputGroup2">
+                            <div class="inputGroup">
+                            <label for="tituloChamado" class="lblCad">Titulo do Chamado:</label>
+                            <input type="text" id="titulo" class="inputCad" required>
+                        </div>
+
+                        <br><br>
+
+                        <div class="inputGroup">
+                            <label for="endereco" class="lblCad">Descrição:</label>
+                            <textarea class="inputCad2" rows="14" style="resize: none; overflow-y: auto;"></textarea>
+                        </div>
+
+                        <br><br>
+
+                        <div class="inputGroup">
+                            <label for="endereco" class="lblCad">Comentário interno:</label>
+                            <textarea class="inputCad2" rows="14" style="resize: none; overflow-y: auto;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="infoFourth">
+
+                        <div class="inputGroup">
+                            <label for="servico" class="lblCad">Serviço:</label>
+                            <select id="servico" class="inputCad">
+                                <option value="null"></option>
+                                <option value="appPMESP">Aplicações PMESP</option>
+                                <option value="appDiversos">Aplicativos Diversos</option>
+                                <option value="copAxon">COP Advanta/Axon</option>
+                                <option value="copMotorolla">COP Motorolla</option>
+                                <option value="correio">Correio</option>
+                                <option value="dciTelefoniaAdm">DCI/ Telefonia Adm</option>
+                                <option value="hardware">Hardware</option>
+                                <option value="plataformasMoveis">Plataformas Móveis</option>
+                                <option value="radioComunicacao">Radiocomunicação</option>
+                                <option value="rede">Rede</option>
+                                <option value="segActiveDirectory">Segurança no Active Directory</option>
+                                <option value="servidor">SERVIDOR</option>
+                            </select>
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="categoria" class="lblCad">Categoria:</label>
+                            <select id="categoria" class="inputCad">
+                                <option value="null"></option>
+
+                                <div class="">
+                                    <!-- Aplicações PMESP -->
+                                    <option class="appPMESP" value="boe">Bo-e</option>
+                                    <option class="appPMESP" value="copomOnline">Copom Online</option>
+                                    <option class="appPMESP" value="detecta">DETECTA (muralha)</option>
+                                    <option class="appPMESP" value="holerite">Holerite</option>
+                                    <option class="appPMESP" value="medalhaValor">Medalha valor militar</option>
+                                    <option class="appPMESP" value="ead">Moodle-EAD</option>
+                                    <option class="appPMESP" value="ms">MS</option>
+                                    <option class="appPMESP" value="pericias">Perícias</option>
+                                    <option class="appPMESP" value="sicoordop">Sicoordop</option>
+                                    <option class="appPMESP" value="siopmCorp">Siopm Corp</option>
+                                    <option class="appPMESP" value="siopmWeb">Siopm Web</option>
+                                    <option class="appPMESP" value="siplClient">Sipl Client</option>
+                                    <option class="appPMESP" value="siplWeb">Sipl Web</option>
+                                    <option class="appPMESP" value="sirh">SIRH</option>
+                                    <option class="appPMESP" value="sisbol">Sisbol</option>
+                                    <option class="appPMESP" value="sitaf">SITAF</option>
+                                    <option class="appPMESP" value="webAia">Web AIA</option>
+
+                                    <!-- Aplicativos Diversos -->
+                                    <option class="appDiversos" value="citrix">CITRIX	</option>
+                                    <option class="appDiversos" value="citrixReceiver">CITRIX Receiver</option>
+                                    <option class="appDiversos" value="ftp">FTP</option>
+                                    <option class="appDiversos" value="office2007">MS Office 2007</option>
+                                    <option class="appDiversos" value="office2010">MS Office 2010</option>
+                                    <option class="appDiversos" value="office2013">MS Office 2013</option>
+                                    <option class="appDiversos" value="sei">SEI</option>
+
+                                    <!-- COP AXON -->
+                                    <option class="copAxon" value="acessorioFixacao">Acessórios de fixação</option>
+                                    <option class="copAxon" value="cabeamentoLogico">Cabeamento lógico</option>
+                                    <option class="copAxon" value="cameraBluetooth">Camera - Bluetooth</option>
+                                    <option class="copAxon" value="cameraUSB">Camera - Conector USB</option>
+                                    <option class="copAxon" value="cameraLente">Camera - Lente</option>
+                                    <option class="copAxon" value="cameraMicrofone">Camera - Microfone</option>
+                                    <option class="copAxon" value="cameraBateria">Cameras - Bateria</option>
+                                    <option class="copAxon" value="camerasBotoes">Cameras - Botões</option>
+                                    <option class="copAxon" value="camerasCarcaca">Cameras - Carcaça</option>
+                                    <option class="copAxon" value="camerasLedDisplay">Cameras - Leds e Display</option>
+                                    <option class="copAxon" value="computadorCabos">Computador - Cabos diversos</option>
+                                    <option class="copAxon" value="computadorCPU">Computador - CPU</option>
+                                    <option class="copAxon" value="computadorMonitor">Computador - Monitor</option>
+                                    <option class="copAxon" value="computadorMouse">Computador - Mouse</option>
+                                    <option class="copAxon" value="computadorTeclado">Computador - Teclado</option>
+                                    <option class="copAxon" value="computadorUsoGeral">Computador - Uso geral</option>
+                                    <option class="copAxon" value="docaCarcaca">Doca - Carcaça</option>
+                                    <option class="copAxon" value="docaConexaoRede">Doca - Conexões de rede</option>
+                                    <option class="copAxon" value="docaFonteAlimentacao">Doca - Fonte de alimentação</option>
+                                    <option class="copAxon" value="docaPinoUSB">Doca - Pino USB</option>
+                                    <option class="copAxon" value="equipamentosTelecom">Equipamentos de telecom</option>
+                                    <option class="copAxon" value="estabilizadorTensao">Estabilizador de tensão</option>
+                                    <option class="copAxon" value="gravadorDVD">Gravador DVD externo</option>
+                                    <option class="copAxon" value="instalacoesEletricas">Instalações eletricas</option>
+                                    <option class="copAxon" value="linkInternet">Link de internet</option>
+                                    <option class="copAxon" value="livePlataforma">Livestreaming Plataforma Evidence.com</option>
+                                    <option class="copAxon" value="liveTransmissao">Livestreaming Transmissão da Câmera</option>
+                                    <option class="copAxon" value="mobiliario">Mobiliario</option>
+                                    <option class="copAxon" value="plataformaEvidence">Plataforma Evidence</option>
+                                    <option class="copAxon" value="tablet">Tablet</option>
+                                    <option class="copAxon" value="usuarios">Usuário</option>
+
+                                    <!-- COP Motorolla -->
+                                    <option class="copMotorolla" value="acessorioFixacao">Acessórios de fixação</option>
+                                    <option class="copMotorolla" value="acionamentoAutomatico">Acionamento Automático</option>
+                                    <option class="copMotorolla" value="atribuicaoAutomatica">Atribuição Automática</option>
+                                    <option class="copMotorolla" value="audioBidirecional">Áudio Bidirecional</option>
+                                    <option class="copMotorolla" value="cabeamentoLogico">Cabeamento lógico</option>
+                                    <option class="copMotorolla" value="cameraBluetooth">Camera - Bluetooth</option>
+                                    <option class="copMotorolla" value="cameraUSB">Camera - Conector USB</option>
+                                    <option class="copMotorolla" value="cameraLente">Camera - Lente</option>
+                                    <option class="copMotorolla" value="cameraMicrofone">Camera - Microfone</option>
+                                    <option class="copMotorolla" value="cameraBateria">Cameras - Bateria</option>
+                                    <option class="copMotorolla" value="camerasBotoes">Cameras - Botões</option>
+                                    <option class="copMotorolla" value="camerasCarcaca">Cameras - Carcaça</option>
+                                    <option class="copMotorolla" value="camerasGPS">Cameras - GPS</option>
+                                    <option class="copMotorolla" value="camerasLedDisplay">Cameras - Leds e Display</option>
+                                    <option class="copMotorolla" value="cartaoRFID">Cartão RFID</option>
+                                    <option class="copMotorolla" value="computadorCabos">Computador - Cabos diversos</option>
+                                    <option class="copMotorolla" value="computadorCPU">Computador - CPU</option>
+                                    <option class="copMotorolla" value="computadorMonitor">Computador - Monitor</option>
+                                    <option class="copMotorolla" value="computadorMouse">Computador - Mouse</option>
+                                    <option class="copMotorolla" value="computadorTeclado">Computador - Teclado</option>
+                                    <option class="copMotorolla" value="computadorUsoGeral">Computador - Uso geral</option>
+                                    <option class="copMotorolla" value="docaCarcaca">Doca - Carcaça</option>
+                                    <option class="copMotorolla" value="docaConexaoRede">Doca - Conexões de rede</option>
+                                    <option class="copMotorolla" value="docaFonteAlimentacao">Doca - Fonte de alimentação</option>
+                                    <option class="copMotorolla" value="docaPinoUSB">Doca - Pino USB</option>
+                                    <option class="copMotorolla" value="equipamentosTelecom">Equipamentos de telecom</option>
+                                    <option class="copMotorolla" value="estabilizadorTensao">Estabilizador de tensão</option>
+                                    <option class="copMotorolla" value="gravadorDVD">Gravador DVD externo</option>
+                                    <option class="copMotorolla" value="instalacoesEletricas">Instalações eletricas</option>
+                                    <option class="copMotorolla" value="linkInternet">Link de internet</option>
+                                    <option class="copMotorolla" value="liveTransmissao">Livestreaming Transmissão da Câmera</option>
+                                    <option class="copMotorolla" value="mobiliario">Mobiliario</option>
+                                    <option class="copMotorolla" value="siopmDespacho">SIOPM Despacho</option>
+                                    <option class="copMotorolla" value="tablet">Tablet</option>
+                                    <option class="copMotorolla" value="usuarios">Usuário</option>
+
+                                    <!-- Correio -->
+                                    <option class="correio" value="contaNotes">Conta Notes</option>
+                                    <option class="correio" value="ibmDominioServer">IBM Domínio Server</option>
+                                    <option class="correio" value="ibmNotesClient">IBM Notes Client</option>
+                                    <option class="correio" value="ibmNotesWeb">IBM iNotes-Web</option>
+                                    <option class="correio" value="outlook">Outlook</option>
+                                    <option class="correio" value="postfix">Postfix</option>
+                                    <option class="correio" value="sametime">SAMETIME</option>
+                                    <option class="correio" value="spam">SPAM</option>
+                                    <option class="correio" value="sparkFramework">SPARK framework</option>
+                                    <option class="correio" value="travaler">TRAVELER</option>
+
+                                    <!-- DCI/ Telefonia Adm -->
+                                    <option class="dciTelefoniaAdm" value="atendedorAutomatico">Atendedor Automático</option>
+                                    <option class="dciTelefoniaAdm" value="entroncamentoDigitalE1Adm">Entroncamento Digital-E1 Adm</option>
+                                    <option class="dciTelefoniaAdm" value="gravadorADM">Gravador ADM</option>
+                                    <option class="dciTelefoniaAdm" value="infraestruturaTelefonia">Infraestrutura de Telefonia</option>
+                                    <option class="dciTelefoniaAdm" value="pabx">PABX</option>
+                                    <option class="dciTelefoniaAdm" value="sistemaTelefonico">Sistema Telefônico</option>
+                                    <option class="dciTelefoniaAdm" value="tarifador">Tarifador</option>
+                                    <option class="dciTelefoniaAdm" value="terminaisTelefonicos">Terminais Telefônicos</option>
+                                
+                                    <!-- Hardware -->
+                                    <option class="hardware" value="atividadesProAtivas">Atividades Pró-ativas de Tl</option>
+                                    <option class="hardware" value="dataShow">Data Show</option>
+                                    <option class="hardware" value="desktop">Desktop</option>
+                                    <option class="hardware" value="eventos">Eventos</option>
+                                    <option class="hardware" value="impressora">Impressora</option>
+                                    <option class="hardware" value="impressoraCorporativa">Impressora Corporativa</option>
+                                    <option class="hardware" value="impressoraHP">Impressora HP</option>
+                                    <option class="hardware" value="impressoraLexMark">Impressora LEXMARK</option>
+                                    <option class="hardware" value="ipad">IPAD</option>
+                                    <option class="hardware" value="monitor">Monitor</option>
+                                    <option class="hardware" value="netbook">Netbook</option>
+                                    <option class="hardware" value="notbook">Notebook</option>
+                                    <option class="hardware" value="notebookLenovo">Notebook LENOVO</option>
+                                    <option class="hardware" value="periferico">Periférico</option>
+                                    <option class="hardware" value="scanner">Scanner</option>
+                                    <option class="hardware" value="servidor">Servidor</option>
+                                    <option class="hardware" value="servidorVirtual">Servidor Virtual</option>
+                                    <option class="hardware" value="storange">Storage</option>
+                                    <option class="hardware" value="thinClient">Thin Client</option>
+                                
+                                    <!-- Plataformas móveis -->
+                                    <option class="plataformasMoveis" value="agendamentoManutencao">Agendamento de Manutenção</option>
+                                    <option class="plataformasMoveis" value="atrelamentoVTR">Atrelamento VTR</option>
+                                    <option class="plataformasMoveis" value="gerenciadorTMD">Gerenciador TMD</option>
+                                    <option class="plataformasMoveis" value="projetoRadar">Projeto Radar</option>
+                                    <option class="plataformasMoveis" value="tmd">TMD</option>
+                                    <option class="plataformasMoveis" value="tpd">TPD</option>
+
+                                    <!-- Radiocomunicação -->
+                                    <option class="radioComunicacao" value="camerasMonitoramentoSites">Câmeras-Monitoramento dos Sites</option>
+                                    <option class="radioComunicacao" value="copomSPDespacho">COPOM SP-Despacho</option>
+                                    <option class="radioComunicacao" value="gravadorDespacho">Gravador Despacho</option>
+                                    <option class="radioComunicacao" value="gravadorNice">Gravador Nice</option>
+                                    <option class="radioComunicacao" value="manutencaoCorretiva">Manutenção Corretiva</option>
+                                    <option class="radioComunicacao" value="manutencaoPreventiva">Manutenção Preventiva</option>
+                                    <option class="radioComunicacao" value="radioComunicacaoBase">Rádio Comunicação Base Fixa</option>
+                                    <option class="radioComunicacao" value="radioComunicacaoHT">Rádio Comunicação HT</option>
+                                    <option class="radioComunicacao" value="radioComunicacaoVTR">Rádio Comunicação VTR</option>
+                                    <option class="radioComunicacao" value="siteRepeticao">Site de Repetição</option>
+                                
+                                    <!-- Rede -->
+                                    <option class="rede" value="ambiente">Ambiente</option>
+                                    <option class="rede" value="arcSight">ArcSight</option>
+                                    <option class="rede" value="caPerformanceMonitor">CA Performance Monitor</option>
+                                    <option class="rede" value="caSpectrum">CA Spectrum</option>
+                                    <option class="rede" value="cabeamento">Cabeamento</option>
+                                    <option class="rede" value="captivePortal">Captive Portal</option>
+                                    <option class="rede" value="cmdo">CMDO</option>
+                                    <option class="rede" value="conexoesEntrantes">Conexões Entrantes</option>
+                                    <option class="rede" value="dhcp">DHCP</option>
+                                    <option class="rede" value="dns">DNS</option>
+                                    <option class="rede" value="documentacao">Documentação</option>
+                                    <option class="rede" value="duo">DUO</option>
+                                    <option class="rede" value="equipamentos">Equipamentos</option>
+                                    <option class="rede" value="equipamentosRadioDigital">Equipamentos Radio Digital</option>
+                                    <option class="rede" value="equipamentosRedeDatacenter">Equipamentos Rede Datacenter</option>
+                                    <option class="rede" value="firewall">Firewall</option>
+                                    <option class="rede" value="gerencia">Gerência</option>
+                                    <option class="rede" value="grafana">Grafana</option>
+                                    <option class="rede" value="intranet">Intranet</option>
+                                    <option class="rede" value="ise">ISE</option>
+                                    <option class="rede" value="linkIntragovAlta">Link Intragov Alta</option>
+                                    <option class="rede" value="linkIntragovAltaSites">Link Intragov Alta - Sites</option>
+                                    <option class="rede" value="linkIntragovBaixa">Link Intragov Baixa</option>
+                                    <option class="rede" value="linkIntragovCameras">Link Intragov Câmeras</option>
+                                    <option class="rede" value="linkIntragovMedia">Link Intragov Média</option>
+                                    <option class="rede" value="linkIntragovInterna">Link Intragov Rede Interna</option>
+                                    <option class="rede" value="linkIntragovSolicitacao">Link Intragov Solicitação</option>
+                                    <option class="rede" value="netbox">NetBox</option>
+                                    <option class="rede" value="noc">NOC</option>
+                                    <option class="rede" value="paginasIntranetPMESP">Páginas de Intranet PMESP</option>
+                                    <option class="rede" value="poc">Poc</option>
+                                    <option class="rede" value="proatividade">Proatividade</option>
+                                    <option class="rede" value="projetoTecnico">Projeto Técnico</option>
+                                    <option class="rede" value="radio">Rádio</option>
+                                    <option class="rede" value="relatorios">Relatórios</option>
+                                    <option class="rede" value="reuniao">Reunião</option>
+                                    <option class="rede" value="roteador">Roteador</option>
+                                    <option class="rede" value="routerCore">Router Core</option>
+                                    <option class="rede" value="segurancaGeral">Segurança - Geral</option>
+                                    <option class="rede" value="servidorClusterRede">Servidor Cluster de Rede</option>
+                                    <option class="rede" value="servidorArquivos">Servidor de Arquivos</option>
+                                    <option class="rede" value="servidoresRede">Servidores de Rede</option>
+                                    <option class="rede" value="spark">Spark</option>
+                                    <option class="rede" value="swithAcesso">Switch Acesso</option>
+                                    <option class="rede" value="swithCore">Switch Core</option>
+                                    <option class="rede" value="swithDistribuicaoServidores">Switch Distribuição/Servidores</option>
+                                    <option class="rede" value="treinamento">Treinamento</option>
+                                    <option class="rede" value="troubleshooting">Troubleshooting</option>
+                                    <option class="rede" value="umbrella">Umbrella</option>
+                                    <option class="rede" value="vistoria">Vistoria</option>
+                                    <option class="rede" value="wifi">WI-FI</option>
+                                    <option class="rede" value="zabbix">Zabbix</option>
+
+                                    <!-- Segurança no Active Directory -->
+                                    <option class="segActiveDirectory" value="auditoria">Auditoria</option>
+
+                                    <!-- Servidor -->
+                                    <option class="servidor" value="aumentoCapacidade">Aumento de Capacidade</option>
+                                    <option class="servidor" value="certificadoDigital">Certificado Digital</option>
+                                    <option class="servidor" value="devops">DEVOPS</option>
+                                    <option class="servidor" value="hospedagemAplicacoes">Hospedagem de Aplicações</option>
+                                    <option class="servidor" value="hospedagemPaginaIntranet">Hospedagem de Página Intranet</option>
+                                    <option class="servidor" value="servidorArquivos">Servidor de Arquivos</option>
+                                    <option class="servidor" value="servidorImpressao">Servidor de Impressão</option>
+                                    <option class="servidor" value="windows">Windows</option>
+                                </div>
+
+
+                                
+                                
+                                    
+                            <!-- next cat -->
+                                
+                            </select>
+                        </div>
+                        
+                        <div class="inputGroup">
+                            <label for="sub-categoria" class="lblCad">Sub-Categoria:</label>
+                            <select id="sub-categoria" class="inputCad">
+                                <option value="null"></option>
+
+                            <!---------------------------------------------------------------->
+                            <div class="">
+                                <!-- Bo-E -->
+                                <option class="boe" value="acessos">Acessos</option>
+                                <option class="boe" value="copiaArquivos">Cópia de arquivos de log</option>
+                                <option class="boe" value="exclusaoArquivos">Exclusão de arquivos de log</option>
+                                <option class="boe" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="boe"value="informacoes">Informações</option>
+                                <option class="boe" value="instalacao">Instalação</option>
+                                <option class="boe" value="integracaoIndisponivel">Integração Indisponível</option>
+                                <option class="boe"value="longradouroNaoEncontrado">Logradouro - Número não encontrado</option>
+
+                                <!-- Copom Online -->
+                                <option class="copomOnline" value="acesso">Acesso</option>
+                                <option class="copomOnline" value="acessoCPRV">Acessos - CPRV</option>
+                                <option class="copomOnline" value="Config">Configuração</option>
+                                <option class="copomOnline" value="copiaConfig">Cópia de Config</option>
+                                <option class="copomOnline" value="copiaLog">Cópia de Log</option>
+                                <option class="copomOnline" value="erroFuncionalidade">Erro de funcionalidade</option>
+                                <option class="copomOnline" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="copomOnline" value="lentidao">Lentidão</option>
+                                <option class="copomOnline" value="travamento">Travamento</option>
+
+                                <!-- DETECTA (muralha) -->
+                                <option class="detecta" value="acesso">Acesso</option>
+                                <option class="detecta" value="config">Configuração</option>
+                                <option class="detecta" value="instalacao">Instalação</option>
+                                <option class="detecta" value="travamento">Travamento</option>
+
+                                <!-- Holerite -->
+                                <option class="holerite" value="acesso">Acesso</option>
+                                <option class="holerite" value="config">Configuração</option>
+                                <option class="holerite" value="instalacao">Instalação</option>
+                                <option class="holerite" value="travamento">Travamento</option>
+                                
+                                <!-- Medalha valor militar -->
+                                <option class="medalhaValor" value="erroCodOPM">Erro de código de OPM</option>
+                                <option class="medalhaValor" value="incluirAlterarCodOPM">Inclusão/alteração de código de OPM</option>
+
+                                <!-- Moddle-Ead -->
+                                <option class="ead" value="acesso">Acesso</option>
+                                <option class="ead" value="config">Configuração</option>
+                                <option class="ead" value="copiaConfig">Cópia de Config</option>
+                                <option class="ead" value="copiaLog">Cópia de Log</option>
+                                <option class="ead" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="ead" value="informacoes">Informações</option>
+                                <option class="ead" value="lentidao">Lentidão</option>
+                                <option class="ead" value="travamento">Travamento</option>
+
+                                <!-- MS -->
+                                <option class="ms" value="acesso">Acesso</option>
+                                <option class="ms" value="config">Configuração</option>
+                                <option class="ms" value="copiaConfig">Cópia de Config</option>
+                                <option class="ms" value="copiaLog">Cópia de Log</option>
+                                <option class="ms" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="ms" value="lentidao">Lentidão</option>
+                                <option class="ms" value="travamento">Travamento</option>
+
+                                <!-- Perícias -->
+                                <option class="pericias" value="acesso">Acesso</option>
+                                <option class="pericias" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="pericias" value="lentidao">Lentidão</option>
+                                <option class="pericias" value="travamento">Travamento</option>
+
+                                <!-- SICOORDOP -->
+                                <option class="sicoordop" value="acesso">Acesso</option>
+                                <option class="sicoordop" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="sicoordop" value="lentidao">Lentidão</option>
+                                <option class="sicoordop" value="travamento">Travamento</option>
+
+                                <!-- Siopm Corp -->
+                                <option class="siopmCorp" value="acesso">Acessos</option>
+                                <option class="siopmCorp" value="acessoCPRV">Acessos - CPRV</option>
+                                <option class="siopmCorp" value="arvoreDecisao">Árvore de decisão</option>
+                                <option class="siopmCorp" value="config">Configuração</option>
+                                <option class="siopmCorp" value="copiaConfig">Cópia de Config</option>
+                                <option class="siopmCorp" value="copiaLog">Cópia de Log</option>
+                                <option class="siopmCorp" value="duvidasInformacoes">Dúvidas/ Informações</option>
+                                <option class="siopmCorp" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="siopmCorp" value="instalacao">Instalação</option>
+                                <option class="siopmCorp" value="lentidao">Lentidão</option>
+                                <option class="siopmCorp" value="longradouroNumeroNaoEncontrado">Logradouro número não encontrado	</option>
+                                <option class="siopmCorp" value="longradouroEmDuplicidade">Logradouro em duplicidade</option>
+                                <option class="siopmCorp" value="longradouroNaoEncontrado">Logradouro não encontrado</option>
+                                <option class="siopmCorp" value="travamento">Travamento</option>
+
+                                <!-- Siopm Web -->
+                                <option class="siopmWeb" value="acesso">Acessos</option>
+                                <option class="siopmWeb" value="acessoCPRV">Acessos - CPRV</option>
+                                <option class="siopmWeb" value="config">Configuração</option>
+                                <option class="siopmWeb" value="copiaConfig">Cópia de Config</option>
+                                <option class="siopmWeb" value="copiaLog">Cópia de Log</option>
+                                <option class="siopmWeb" value="falhaParcialAcesso">Falha Parcial de Acesso - VTR</option>
+                                <option class="siopmWeb" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="siopmWeb" value="instalacao">Instalação</option>
+                                <option class="siopmWeb" value="lentidao">Lentidão</option>
+                                <option class="siopmWeb" value="longradouroNumeroNaoEncontrado">Logradouro número não encontrado	</option>
+                                <option class="siopmWeb" value="longradouroEmDuplicidade">Logradouro em duplicidade</option>
+                                <option class="siopmWeb" value="longradouroNaoEncontrado">Logradouro não encontrado</option>
+                                <option class="siopmWeb" value="travamento">Travamento</option>
+
+                                <!-- Sipl Client -->
+                                <option class="siplClient" value="copiaConfig">Cópia de Config</option>
+                                <option class="siplClient" value="copiaLog">Cópia de Log</option>
+                                <option class="siplClient" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="siplClient" value="instalacao">Instalação</option>
+                                <option class="siplClient" value="lentidao">Lentidão</option>
+                                <option class="siplClient" value="">Liberação de acesso</option>
+                                <option class="siplClient" value="">Liberação  de IP</option>
+                                <option class="siplClient" value="travamento">Travamento</option>
+                                
+                                <!-- Sipl Web -->
+                                <option class="siplWeb" value="acesso">Acessos</option>
+                                <option class="siplWeb" value="copiaConfig">Cópia de Config</option>
+                                <option class="siplWeb" value="copiaLog">Cópia de Log</option>
+                                <option class="siplWeb" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="siplWeb" value="lentidao">Lentidão</option>
+                                <option class="siplWeb" value="mauFuncionamento">Mau Funcionamento</option>
+                                <option class="siplWeb" value="orientacoes">Orientações</option>
+                                <option class="siplWeb" value="travamento">Travamento</option>
+
+                                <!-- SIRH -->
+                                <option class="sirh" value="acesso">Acesso</option>
+                                <option class="sirh" value="config">Configuração</option>
+                                <option class="sirh" value="consultaCadastro">Consulta cadastro</option>
+                                <option class="sirh" value="copiaConfig">Cópia de Config</option>
+                                <option class="sirh" value="copiaLog">Cópia de Log</option>
+                                <option class="sirh" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="sirh" value="lentidao">Lentidão</option>
+                                <option class="sirh" value="travamento">Travamento</option>
+
+                                <!-- Sisbol -->
+                                <option class="sisbol" value="acesso">Acesso</option>
+                                <option class="sisbol" value="config">Configuração</option>
+                                <option class="sisbol" value="copiaConfig">Cópia de Config</option>
+                                <option class="sisbol" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="sisbol" value="lentidao">Lentidão</option>
+                                <option class="sisbol" value="travamento">Travamento</option>
+
+                                <!-- SITAF -->
+                                <option class="sitaf" value="acesso">Acesso</option>
+                                <option class="sitaf" value="config">Configuração</option>
+                                <option class="sitaf" value="copiaConfig">Cópia de Config</option>
+                                <option class="sitaf" value="copiaLog">Cópia de Log</option>
+                                <option class="sitaf" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="sitaf" value="lentidao">Lentidão</option>
+                                <option class="sitaf" value="travamento">Travamento</option>
+
+                                <!-- Web AIA -->
+                                <option class="webAia" value="acesso">Acessos</option>
+                                <option class="webAia" value="config">Configuração</option>
+                                <option class="webAia" value="copiaConfig">Cópia de Config</option>
+                                <option class="webAia" value="copiaLog">Cópia de Log</option>
+                                <option class="webAia" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="webAia" value="lentidao">Lentidão</option>
+                                <option class="webAia" value="longradouroNumeroNaoEncontrado">Logradouro número não encontrado	</option>
+                                <option class="webAia" value="longradouroEmDuplicidade">Logradouro em duplicidade</option>
+                                <option class="webAia" value="longradouroNaoEncontrado">Logradouro não encontrado</option>
+                                <option class="webAia" value="travamento">Travamento</option>
+                            </div>
+
+                            <!---------------------------------------------------------------->
+                            <div class="">
+                                <!-- Citrix -->
+                                <option class="citrix" value="acessos">Acessos</option>
+                                <option class="citrix" value="criacaoUsuario">Criação de Usuário</option>
+                                <option class="citrix" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="citrix" value="instalacao">Instalação</option>
+                                <option class="citrix" value="lentidao">Lentidão</option>
+                                <option class="citrix" value="liberacaoAcesso">Liberação de Acesso</option>
+                                <option class="citrix" value="resetSenha">Reset de Senha</option>
+                                <option class="citrix" value="travamento">Travamento</option>
+                            
+                                <!-- Citrix Receiver -->
+                                <option class="citrixReceiver" value="acessos">Acesso</option>
+                                <option class="citrixReceiver" value="configuracao">Configuração</option>
+                                <option class="citrixReceiver" value="instalacao">Instalação</option>
+                                <option class="citrixReceiver" value="lentidao">Lentidão</option>
+                                <option class="citrixReceiver" value="semAcesso">Sem Acesso</option>
+
+                                <!-- FTP -->
+                                <option class="ftp" value="acessos">Acesso</option>
+                                <option class="ftp" value="configuracao">Configuração</option>
+                                <option class="ftp" value="lentidao">Lentidão</option>
+                                <option class="ftp" value="travamento">Travamento</option>
+
+                                <!-- Ms Office 2007 -->
+                                <option class="office2007" value="configuracao">Configuração</option>
+                                <option class="office2007" value="instalacao">Instalação</option>
+                                <option class="office2007" value="lentidao">Lentidão</option>
+                                <option class="office2007" value="remocao">Remoção</option>
+                                <option class="office2007" value="travamento">Travamento</option>
+
+                                <!-- Ms Office 2010 -->
+                                <option class="office2010" value="configuracao">Configuração</option>
+                                <option class="office2010" value="instalacao">Instalação</option>
+                                <option class="office2010" value="lentidao">Lentidão</option>
+                                <option class="office2010" value="remocao">Remoção</option>
+                                <option class="office2010" value="travamento">Travamento</option>
+
+                                <!-- Ms Office 2013 -->
+                                <option class="office2013" value="configuracao">Configuração</option>
+                                <option class="office2013" value="instalacao">Instalação</option>
+                                <option class="office2013" value="lentidao">Lentidão</option>
+                                <option class="office2013" value="remocao">Remoção</option>
+                                <option class="office2013" value="travamento">Travamento</option>
+
+                                <!-- SEI -->
+                                <option class="sei" value="acessos">Acesso</option>
+                                <option class="sei" value="acessosAva">Acesso AVA</option>
+                                <option class="sei" value="alteracao">Alteração</option>
+                                <option class="sei" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="sei" value="informacoes">Informações</option>
+                            </div>
+
+                            <!---------------------------------------------------------------->
+                            <div class="">
+                                <!-- Acessórios de fixação -->
+                                <option class="acessorioFixacao" value="danificado">Danificado</option>
+                                <option class="acessorioFixacao" value="extraviado">Extraviado</option>
+                                <option class="acessorioFixacao" value="inoperante">Inoperante</option>
+
+                                <!-- Cabeamento lógico -->
+                                <option class="cabeamentoLogico" value="danificado">Danificado</option>
+                                <option class="cabeamentoLogico" value="inexistente">Inexistente</option>
+                                <option class="cabeamentoLogico" value="inoperante">Inoperante</option>
+                                <option class="cabeamentoLogico" value="naoConforme">Não conforme</option>
+                                
+                                <!-- Camera - Bluetooth -->
+                                <option class="cameraBluetooth" value="danificado">Danificado</option>
+                                <option class="cameraBluetooth" value="inoperante">Inoperante</option>
+
+                                <!-- Camera - Conector USB -->
+                                <option class="cameraUSB" value="danificado">Danificado</option>
+                                <option class="cameraUSB" value="inoperante">Inoperante</option>
+
+                                <!-- Camera - Lente -->
+                                <option class="cameraLente" value="danificado">Danificado</option>
+                                <option class="cameraLente" value="inoperante">Inoperante</option>
+
+                                <!-- Camera - Microfone -->
+                                <option class="cameraMicrofone" value="danificado">Danificado</option>
+                                <option class="cameraMicrofone" value="inoperante">Inoperante</option>
+
+                                <!-- Cameras - Bateria -->
+                                <option class="cameraBateria" value="danificado">Danificado</option>
+                                <option class="cameraBateria" value="extraviado">Extraviado</option>
+                                <option class="cameraBateria" value="inoperante">Inoperante</option>
+                                <option class="cameraBateria" value="naoSeguraCarga">Não segura carga</option>
+
+                                <!-- Cameras - Botões -->
+                                <option class="camerasBotoes" value="danificado">Danificado</option>
+                                <option class="camerasBotoes" value="inoperante">Inoperante</option>
+
+                                <!-- Cameras - Carcaça -->
+                                <option class="camerasCarcaca" value="danificado">Danificado</option>
+
+                                <!-- Cameras - Leds e Display -->
+                                <option class="camerasLedDisplay" value="danificado">Danificado</option>
+                                <option class="camerasLedDisplay" value="inoperante">Inoperante</option>
+
+                                <!-- Computador - Cabos diversos -->
+                                <option class="computadorCabos" value="danificado">Danificado</option>
+                                <option class="computadorCabos" value="extraviado">Extraviado</option>
+                                <option class="computadorCabos" value="inoperante">Inoperante</option>
+
+                                <!-- Computador - CPU -->
+                                <option class="computadorCPU" value="danificado">Danificado</option>
+                                <option class="computadorCPU" value="extraviado">Extraviado</option>
+                                <option class="computadorCPU" value="inoperante">Inoperante</option>
+
+                                <!-- Computador - Monitor -->
+                                <option class="computadorMonitor" value="danificado">Danificado</option>
+                                <option class="computadorMonitor" value="extraviado">Extraviado</option>
+                                <option class="computadorMonitor" value="inoperante">Inoperante</option>
+
+                                <!-- Computador - Mouse -->
+                                <option class="computadorMouse" value="danificado">Danificado</option>
+                                <option class="computadorMouse" value="extraviado">Extraviado</option>
+                                <option class="computadorMouse" value="inoperante">Inoperante</option>
+
+                                <!-- Computador - Teclado -->
+                                <option class="computadorTeclado" value="danificado">Danificado</option>
+                                <option class="computadorTeclado" value="extraviado">Extraviado</option>
+                                <option class="computadorTeclado" value="inoperante">Inoperante</option>
+
+                                <!-- Computador - Uso geral -->
+                                <option class="computadorUsoGeral" value="instalacaoSoftware">Instalação de Software</option>
+                                <option class="computadorUsoGeral" value="lentidao">Lentidão</option>
+                                <option class="computadorUsoGeral" value="remocaoSoftware">Remoção de Software</option>
+                                <option class="computadorUsoGeral" value="remocaVirus">Remoção de Virus</option>
+                                <option class="computadorUsoGeral" value="semConexaoAoEvidence">Sem conexão ao Evidence</option>
+                                <option class="computadorUsoGeral" value="semConexaoInternet">Sem conexão a internet</option>
+                                <option class="computadorUsoGeral" value="travado">Travado</option>
+                                
+                                <!-- Doca - Carcaça -->
+                                <option class="docaCarcaca" value="danificado">Danificado</option>
+
+                                <!-- Doca - Conexões de rede -->
+                                <option class="docaConexaoRede" value="danificado">Danificado</option>
+                                <option class="docaConexaoRede" value="inoperante">Inoperante</option>
+
+                                <!-- Doca - Fonte de alimentação -->
+                                <option class="docaFonteAlimentacao" value="danificado">Danificado</option>
+                                <option class="docaFonteAlimentacao" value="extraviado">Extraviado</option>
+                                <option class="docaFonteAlimentacao" value="inoperante">Inoperante</option>
+
+                                <!-- Doca - Pino USB -->
+                                <option class="docaPinoUSB" value="danificado">Danificado</option>
+                                <option class="docaPinoUSB" value="inoperante">Inoperante</option>
+                                <option class="docaPinoUSB" value="naoCarregaCop">Não carrega COP</option>
+
+                                <!-- Equipamentos de telecom -->
+                                <option class="equipamentosTelecom" value="danificado">Danificado</option>
+                                <option class="equipamentosTelecom" value="extraviado">Extraviado</option>
+                                <option class="equipamentosTelecom" value="inoperante">Inoperante</option>
+                                <option class="equipamentosTelecom" value="naoLiga">Não liga</option>
+                                <option class="equipamentosTelecom" value="portaAvariada">Porta avariada</option>
+
+                                <!-- Estabilizador de tensão -->
+                                <option class="estabilizadorTensao" value="danificado">Danificado</option>
+                                <option class="estabilizadorTensao" value="extraviado">Extraviado</option>
+                                <option class="estabilizadorTensao" value="inoperante">Inoperante</option>
+                                <option class="estabilizadorTensao" value="sobrecarga">Sobrecarga</option>
+
+                                <!-- Gravador DVD exteno -->
+                                <option class="gravadorDVD" value="danificado">Danificado</option>
+                                <option class="gravadorDVD" value="extraviado">Extraviado</option>
+                                <option class="gravadorDVD" value="inoperante">Inoperante</option>
+
+                                <!-- Instalações eletricas -->
+                                <option class="instalacoesEletricas" value="danificado">Danificado</option>
+                                <option class="instalacoesEletricas" value="inexistente">Inexistente</option>
+                                <option class="instalacoesEletricas" value="inoperante">Inoperante</option>
+                                <option class="instalacoesEletricas" value="naoConforme">Não conforme</option>
+
+                                <!-- Link de internet -->
+                                <option class="linkInternet" value="inoperante">Inoperante</option>
+                                <option class="linkInternet" value="instabilidade">Instabilidade</option>
+                                <option class="linkInternet" value="lentidao">Lentidão</option>
+
+                                <!-- Livestreaming Plataforma Evidence.com -->
+                                <option class="livePlataforma" value="inoperante">Inoperante</option>
+
+                                <!-- Livestreaming Transmissão da Câmera -->
+                                <option class="liveTransmissao" value="inoperante">Inoperante</option>
+
+                                <!-- Mobiliario -->
+                                <option class="mobiliario" value="danificado">Danificado</option>
+                                <option class="mobiliario" value="extraviado">Extraviado</option>
+
+                                <!-- Plataforma Evidence -->
+                                <option class="plataformaEvidence" value="indiponivel">Indisponível</option>
+                                <option class="plataformaEvidence" value="perdaAcesso">Perda de acesso</option>
+
+                                <!-- Tablet -->
+                                <option class="tablet" value="danificado">Danificado</option>
+                                <option class="tablet" value="extraviado">Extraviado</option>
+                                <option class="tablet" value="inoperante">Inoperante</option>
+
+                                <!-- Usuário -->
+                                <option class="usuarios" value="movimentacao">Movimentação</option>
+                            </div>
+
+                            <!---------------------------------------------------------------->
+                            <div class="">
+                                <!-- Acionamento Automático -->
+                                <option class="acionamentoAutomatico" value="inoperante">Inoperante</option>
+
+                                <!-- Atribuição Automática -->
+                                <option class="atribuicaoAutomatica" value="inoperante">Inoperante</option>
+
+                                <!-- Audio Bidirecional -->
+                                <option class="audioBidirecional" value="inoperante">Inoperante</option>
+
+                                <!-- Cameras - GPS -->
+                                <option class="camerasGPS" value="inoperante">Inoperante</option>
+
+                                <!-- Cartão RFID -->
+                                <option class="cartaoRFID" value="danificado">Danificado</option>
+                                <option class="cartaoRFID" value="extraviado">Extraviado</option>
+                                <option class="cartaoRFID" value="inoperante">Inoperante</option>
+
+                                <!-- SIOPM Despacho -->
+                                <option class="siopmDespacho" value="inoperante">Inoperante</option>
+
+                            </div>
+
+                            <!---------------------------------------------------------------->
+                            <div class="">
+                                <!-- Conta notes -->
+                                <option class="contaNotes" value="ajusteCota">Ajuste de cota</option>
+                                <option class="contaNotes" value="criacaoContaCivil">Criação de Conta para Civil</option>
+                                <option class="contaNotes" value="criacaoContaMilitar">Criação de Conta para Militar</option>
+                                <option class="contaNotes" value="reativacaoContaInativo">Reativação de Conta para Inativo</option>
+                                <option class="contaNotes" value="resetSenhaEmailInativo">Reset de senha e-mail - Inativo</option>
+
+                                <!-- IBM Dominio Serve -->
+                                <option class="ibmDominioServer" value="acessoAplicacoes">Acesso a aplicações</option>
+                                <option class="ibmDominioServer" value="acessoNaoAutorizado">Acesso não autorizado</option>
+                                <option class="ibmDominioServer" value="baseEmailComProblema">Base de email com problema</option>
+                                <option class="ibmDominioServer" value="correcaoFullTextIndex">Correção Full Text Index</option>
+                                <option class="ibmDominioServer" value="criacaoRegrasSpan">Criação de Regra de Spam</option>
+                                <option class="ibmDominioServer" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="ibmDominioServer" value="instalacao">Instalação</option>
+                                <option class="ibmDominioServer" value="lentidao">Lentidão</option>
+                                <option class="ibmDominioServer" value="levantamentoTecnico">Levantamento Técnico</option>
+                                <option class="ibmDominioServer" value="manutencaoBasesSistema">Manutenção das Bases de Sistema</option>
+                                <option class="ibmDominioServer" value="restartServidorDominio">Restart servidor Domino</option>
+                                <option class="ibmDominioServer" value="semAcesso">Sem acesso</option>
+                                <option class="ibmDominioServer" value="travamento">Travamento</option>
+                                <option class="ibmDominioServer" value="Upgrade">Upgrade </option>
+
+                                <!-- IBM Notes Cient -->
+                                <option class="ibmNotesClient" value="acessoEmailSessao">Acesso ao E-Mail de Sessão</option>
+                                <option class="ibmNotesClient" value="alteracaoNomeNotesEmai">Alteração de Nome Notes / Email</option>
+                                <option class="ibmNotesClient" value="atualizacaoGrupos">Atualização de Grupos</option>
+                                <option class="ibmNotesClient" value="backup">Backup</option>
+                                <option class="ibmNotesClient" value="configuracao">Configuração</option>
+                                <option class="ibmNotesClient" value="configuracaoIbmConnections">Configuração do IBM Connections</option>
+                                <option class="ibmNotesClient" value="criacaoAgendaCompartilhada">Criação de Agenda Compartilhada</option>
+                                <option class="ibmNotesClient" value="criacaoEmailSessao">Criação de E-Mail de Seção</option>
+                                <option class="ibmNotesClient" value="CriacaoGrupo">Criação de Grupo</option>
+                                <option class="ibmNotesClient" value="criacaoPoliticas">Criação de Politicas</option>
+                                <option class="ibmNotesClient" value="criacaoRegras">Criação de regras</option>
+                                <option class="ibmNotesClient" value="criacaoWidgets">Criar Widgets</option>
+                                
+                                <!-- IBM Notes Web -->
+                                <option class="ibmNotesWeb" value="configuracao">Configuração</option>
+                                <option class="ibmNotesWeb" value="ErroMenuPreferencias">Erro no Menu Preferências</option>
+                                <option class="ibmNotesWeb" value="indisponibilidade403">Indisponibilidade 403</option>
+                                <option class="ibmNotesWeb" value="indisponibilidade404">Indisponibilidade 404</option>
+                                <option class="ibmNotesWeb" value="indisponibilidade500">Indisponibilidade 500</option>
+                                <option class="ibmNotesWeb" value="naoAutorizado">Não Autorizado</option>
+                                <option class="ibmNotesWeb" value="paginaIndisponivel">Página Indisponível</option>
+                                <option class="ibmNotesWeb" value="redirectEmail">Redirect de email</option>
+                                <option class="ibmNotesWeb" value="usuarioNaoAutorizado">Usuário Não Autorizado</option>
+                                
+                                <!-- Outlook -->
+                                <option class="outlook" value="atualizacao">Atualização</option>
+                                <option class="outlook" value="configuracao">Configuração</option>
+                                <option class="outlook" value="falhaEnvioRecebimento">Falha de Envio / Recebimento</option>
+                                <option class="outlook" value="instalacao">Instalação</option>
+                                <option class="outlook" value="instalacaoCorrompida">Instalação corrompida</option>
+                                <option class="outlook" value="migracao">Migração</option>
+                                <option class="outlook" value="remocao">Remoção</option>
+                                
+                                <!-- Postfix -->
+                                <option class="postfix" value="alteracaoCota">Alteração de cota</option>
+                                <option class="postfix" value="bloqueioRemetente">Bloqueio de remetente</option>
+                                <option class="postfix" value="criacaoConta">Criação de conta</option>
+                                <option class="postfix" value="falhaServicoEmail">Falha serviço de email</option>
+                                <option class="postfix" value="relatorioEnvioEmail">Relatório de envio de e-mail</option>
+                                <option class="postfix" value="relatorioRecebimentoEmail">Relatório de recebimento de e-mail</option>
+                                <option class="postfix" value="remocaoConta">Remoção de conta</option>
+                                
+                                <!-- Sametime -->
+                                <option class="sametime" value="acesso">Acessos</option>
+                                <option class="sametime" value="configuracao">Configuração</option>
+                                <option class="sametime" value="falhaComunicacaoServidor">Falha na Comunicação com o Servidor</option>
+                                <option class="sametime" value="instalacao">Instalação</option>
+                                <option class="sametime" value="lentidao">Lentidão</option>
+                                <option class="sametime" value="travamento">Travamento</option>
+                                
+                                <!-- Spam -->
+                                <option class="spam" value="bloqueioEmail">Bloqueio de e-mail </option>
+                                <option class="spam" value="emailConteudoMalicioso">E-mail com conteúdo malicioso</option>
+
+                                <!-- Spark Framework -->
+                                <option class="sparkFramework" value="acesso">Acessos</option>
+                                <option class="sparkFramework" value="configuracao">Configuração</option>
+                                <option class="sparkFramework" value="desinstalcao">Desinstalação</option>
+                                <option class="sparkFramework" value="semConexao">Sem Conexão</option>
+
+                                <!-- TRAVELER -->
+                                <option class="travaler" value="apagarTodosDadosCelular">Apagar Todos Dados do Celular</option>
+                                <option class="travaler" value="autorizarDispositivo">Autorizar Dispositivo</option>
+                                <option class="travaler" value="configuracao">Configuração</option>
+                                <option class="travaler" value="configurarContaExchange">Configurar Conta Exchange</option>
+                                <option class="travaler" value="configurarContaIBMVerse">Configurar Conta IBM Verse</option>
+                                <option class="travaler" value="erroAplicacao">Erro na aplicação</option>
+                                <option class="travaler" value="excluirDispositivo">Excluir Dispositivo</option>
+                                <option class="travaler" value="instalacao">Instalação</option>
+                                <option class="travaler" value="lentidao">Lentidão</option>
+                                <option class="travaler" value="naoSincronizaEmails">Não Sincroniza E-Mails</option>
+                                <option class="travaler" value="travamento">Travamento</option>
+                            </div>
+
+                            <!---------------------------------------------------------------->
+                            <div class="">
+                                    <!-- Atendedor Automatico -->
+                                    <option class="atendedorAutomatico" value="instalacao">Instalação</option>
+                                    <option class="atendedorAutomatico" value="reparoManutencao">Reparo Manutenção</option>
+
+                                    <!-- Entroncamento Digital-E1 Adm -->
+                                    <option class="entroncamentoDigitalE1Adm" value="mudo">Mudo</option>
+
+                                    <!-- Gravador ADM -->
+                                    <option class="gravadorADM" value="atualizacaoProgramacao">Atualização/Programação</option>
+                                    <option class="gravadorADM" value="backup">Backup</option>
+                                    <option class="gravadorADM" value="extracaoAudio">Extração de áudio</option>
+                                    <option class="gravadorADM" value="instalacao">Instalação</option>
+                                    <option class="gravadorADM" value="reparoManutencao">Reparo/Manutenção</option>
+
+                                    <!-- Infraestrutura de Telefonia -->
+                                    <option class="infraestruturaTelefonia" value="instalacao">Instalação</option>
+                                    <option class="infraestruturaTelefonia" value="readequacao">Readequação</option>
+                                    <option class="infraestruturaTelefonia" value="reparoManutencaoDG">Reparo/Manutenção DG</option>
+                                    <option class="infraestruturaTelefonia" value="raparoManutencaoNoBreak">Reparo/Manutenção No break</option>
+                                    <option class="infraestruturaTelefonia" value="reparoManutencaoRetificador">Reparo/Manutenção Retificador</option>
+                                    <option class="infraestruturaTelefonia" value="vistoria">Vistoria</option>
+                                    
+                                    <!-- PABX -->
+                                    <option class="pabx" value="instalacao">Instalação</option>
+                                    <option class="pabx" value="programacao">Programação</option>
+                                    <option class="pabx" value="remanejamento">Remanejamento</option>
+                                    <option class="pabx" value="reparoManutencao">Reparo/Manutenção</option>
+                                    
+                                    <!-- Sistema Telefônico -->
+                                    <option class="sistemaTelefonico" value="conjunta">Conjunta</option>
+
+                                    <!-- Tarifador -->
+                                    <option class="tarifador" value="configuracao">Configuração</option>
+                                    <option class="tarifador" value="extracaoRelatorio">Extração de relatório</option>
+                                    <option class="tarifador" value="instalacao">Instalação</option>                                <option class="pabx" value="reparoManutencao">Reparo/Manutenção</option>
+                                    <option class="tarifador" value="reparoManutencao">Reparo/Manutenção</option>
+
+                                    <!-- Terminais elefônicos -->
+                                    <option class="terminaisTelefonicos" value="linhaCruzada">Linha Cruzada</option>
+                                    <option class="terminaisTelefonicos" value="mudo">Mudo</option>
+                                    <option class="terminaisTelefonicos" value="reparoManutencao">Reparo/Manutenção</option>                              <option class="pabx" value="reparoManutencao">Reparo/Manutenção</option>
+                                    <option class="terminaisTelefonicos" value="ruido">Ruído</option>
+                            </div>
+
+                            <!---------------------------------------------------------------->
+                            <div class="">
+                                <!-- Atividades Pró-ativas de Tl -->
+                                <option class="atividadesProAtivas" value="manutencaoPreventiva">Manutenção Preventiva</option>
+
+                                <!-- Data Show -->
+                                <option class="dataShow" value="configuracao">Configuração</option>
+                                <option class="dataShow" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="dataShow" value="instalacao">Instalação</option>
+
+                                <!-- Desktop -->
+                                <option class="desktop" value="configuracao">Configuração</option>
+                                <option class="desktop" value="danificado">Danificado</option>
+                                <option class="desktop" value="instalacao">Instalação</option>
+                                <option class="desktop" value="lentidao">Lentidão</option>
+                                <option class="desktop" value="mapeamentoRede">Mapeamento de Rede</option>
+                                <option class="desktop" value="naoLiga">Não liga</option>
+                                <option class="desktop" value="retirada">Retirada</option>
+
+                                <!-- Eventos -->
+                                <option class="eventos" value="acompanhamentoEventos">Acompanhamento de Eventos Preventiva</option>
+
+                                <!-- Impressora -->
+                                <option class="impressora" value="atolamentoPapel">Atolamento de papel</option>
+                                <option class="impressora" value="configuracao">Configuração</option>
+                                <option class="impressora" value="danificado">Danificado</option>
+                                <option class="impressora" value="instalacao">Instalação</option>
+                                <option class="impressora" value="lentidao">Lentidão</option>
+                                <option class="impressora" value="naoLiga">Não liga</option>
+                                <option class="impressora" value="trocaTonner">Troca de Tonner</option>
+
+                                <!-- Impressora Corporativa -->
+                                <option class="impressoraCorporativa" value="configuracao">Configuração</option>
+                                <option class="impressoraCorporativa" value="danificado">Danificado</option>
+                                <option class="impressoraCorporativa" value="instalacao">Instalação</option>
+                                <option class="impressoraCorporativa" value="naoLiga">Não liga</option>
+                                <option class="impressoraCorporativa" value="reposicao">Reposição</option>
+                                <option class="impressoraCorporativa" value="travamento">Travamento</option>
+
+                                <!-- Impressora HP -->
+                                <option class="impressoraHP" value="acionamentoGarantia">Acionamento de Garantia</option>
+
+                                <!-- Impressora Lexmark -->
+                                <option class="impressoraLexMark" value="acionamentoGarantia">Acionamento de Garantia</option>
+
+                                <!-- IPAD -->
+                                <option class="ipad" value="configuracao">Configuração</option>
+                                <option class="ipad" value="instalacao">Instalação</option>
+                                <option class="ipad" value="naoLiga">Não liga</option>
+                                <option class="ipad" value="travamento">Travamento</option>
+
+                                <!-- Monitor -->
+                                <option class="monitor" value="configuracao">Configuração</option>
+                                <option class="monitor" value="instalacao">Instalação</option>
+                                <option class="monitor" value="naoLiga">Não liga</option>
+                                <option class="monitor" value="travamento">Travamento</option>
+
+                                <!-- Netbook -->
+                                <option class="netbook" value="configuracao">Configuração</option>
+                                <option class="netbook" value="instalacao">Instalação</option>
+                                <option class="netbook" value="naoLiga">Não liga</option>
+                                <option class="netbook" value="travamento">Travamento</option>
+
+                                <!-- Notbook -->
+                                <option class="notbook" value="afendamento">Agendamento</option>
+                                <option class="notbook" value="configuracao">Configuração</option>
+                                <option class="notbook" value="danificado">Danificado</option>
+                                <option class="notbook" value="instalacao">Instalação</option>
+                                <option class="notbook" value="lentidao">Lentidão</option>
+                                <option class="notbook" value="naoLiga">Não liga</option>
+                                <option class="notbook" value="retirada">Retirada</option>
+
+                                <!-- Notebook LENOVO-->
+                                <option class="notebookLenovo" value="acionamentoGarantia">Acionamento de Garantia</option>
+
+                                <!-- Periférico -->
+                                <option class="periferico" value="configuracao">Configuração</option>
+                                <option class="periferico" value="danificado">Danificado</option>
+                                <option class="periferico" value="instalacao">Instalação</option>
+                                <option class="periferico" value="naoLiga">Não liga</option>
+                                <option class="periferico" value="travamento">Travamento</option>
+
+                                <!-- Scanner -->
+                                <option class="scanner" value="configuracao">Configuração</option>
+                                <option class="scanner" value="danificado">Danificado</option>
+                                <option class="scanner" value="instalacao">Instalação</option>
+                                <option class="scanner" value="naoLiga">Não liga</option>
+                                <option class="scanner" value="travamento">Travamento</option>
+
+                                <!-- Servidor -->
+                                <option class="servidor" value="acesso">Acessos</option>
+                                <option class="servidor" value="configuracao">Configuração</option>
+                                <option class="servidor" value="danificado">Danificado</option>
+                                <option class="servidor" value="instalacao">Instalação</option>
+                                <option class="servidor" value="lentidao">Lentidão</option>
+                                <option class="servidor" value="remocao">Remoção</option>
+                                <option class="servidor" value="travamento">Travamento</option>
+
+                                <!-- Servidor Virtual -->
+                                <option class="servidorVirtual" value="configuracao">Configuração</option>
+                                <option class="servidorVirtual" value="criacao">Criação</option>
+                                <option class="servidorVirtual" value="migracao">Migração</option>
+                                <option class="servidorVirtual" value="remocao">Remoção</option>
+
+                                <!-- Storange -->
+                                <option class="storange" value="apresentacaoLUN">Apresentação de LUN</option>
+                                <option class="storange" value="configuracao">Configuração</option>
+                                <option class="storange" value="criacaoDisco">Criação de Disco</option>
+                                <option class="storange" value="inoperante">Inoperante</option>
+                                <option class="storange" value="lentidao">Lentidão</option>
+                                <option class="storange" value="manitencaoCorretiva">Manutenção Corretiva</option>
+                                <option class="storange" value="manitencaoPreventiva">Manutenção Preventiva</option>
+
+                                <!-- Thin Client -->
+                                <option class="thinClient" value="configuracao">Configuração</option>
+                                <option class="thinClient" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="thinClient" value="instalacao">Instalação</option>
+                                <option class="thinClient" value="travamento">Travamento</option>
+                            </div>
+
+                            <!---------------------------------------------------------------->         
+                            <div class="">
+                                <!-- Agendamento de Manutenção -->
+                                <option class="agendamentoManutencao" value="acesso">Acessos</option>
+                                <option class="agendamentoManutencao" value="configuracao">Configuração</option>
+                                <option class="agendamentoManutencao" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="agendamentoManutencao" value="lentidao">Lentidão</option>
+                                <option class="agendamentoManutencao" value="travamento">Travamento</option>
+
+                                <!-- Atrelamento VTR -->
+                                <option class="atrelamentoVTR" value="acesso">Acessos</option>
+                                <option class="atrelamentoVTR" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="atrelamentoVTR" value="lentidao">Lentidão</option>
+                                <option class="atrelamentoVTR" value="travamento">Travamento</option>
+
+                                <!-- Gerenciador TMD -->
+                                <option class="gerenciadorTMD" value="acesso">Acessos</option>
+                                <option class="gerenciadorTMD" value="copiaConfig">Cópia de Config</option>
+                                <option class="gerenciadorTMD" value="copiaLog">Cópia de Log</option>
+                                <option class="gerenciadorTMD" value="deslocamento">Deslocamento (replay, rastro de Vtr)</option>
+                                <option class="gerenciadorTMD" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="gerenciadorTMD" value="lentidao">Lentidão</option>
+                                <option class="gerenciadorTMD" value="travamento">Travamento</option>
+
+                                <!-- Projeto Radar -->
+                                <option class="projetoRadar" value="acesso">Acessos</option>
+                                <option class="projetoRadar" value="configuracao">Configuração</option>
+                                <option class="projetoRadar" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="projetoRadar" value="lentidao">Lentidão</option>
+                                <option class="projetoRadar" value="travamento">Travamento</option>
+
+                                <!-- TMD -->
+                                <option class="tmd" value="acesso">Acessos</option>
+                                <option class="tmd" value="areaSombra">Área de Sombra</option>
+                                <option class="tmd" value="atrelamento">Atrelamento</option>
+                                <option class="tmd" value="configuracao">Configuração</option>
+                                <option class="tmd" value="danificado">Danificado</option>
+                                <option class="tmd" value="desatrelamento">Desatrelamento</option>
+                                <option class="tmd" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="tmd" value="informacoes">Informações</option>
+                                <option class="tmd" value="laudoTecnico">Laudo Técnico</option>
+                                <option class="tmd" value="lentidao">Lentidão</option>
+                                <option class="tmd" value="naoFunciona">Não Funciona</option>
+                                <option class="tmd" value="semConexao">Sem Conexão</option>
+                                <option class="tmd" value="termoAvaliacao">Termo de Avaliação</option>
+                                <option class="tmd" value="termoAvaliacaoCapa">Termo de Avaliação da capa</option>
+                                <option class="tmd" value="travamento">Travamento</option>
+                                
+                                <!-- TPD -->
+                                <option class="tpd" value="acesso">Acessos</option>
+                                <option class="tpd" value="areaSombra">Área de Sombra</option>
+                                <option class="tpd" value="configuracao">Configuração</option>
+                                <option class="tpd" value="danificado">Danificado</option>
+                                <option class="tpd" value="deslocamento">Deslocamento (replay, rastro de Vtr)</option>
+                                <option class="tpd" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="tpd" value="laudoTecnico">Laudo Técnico</option>
+                                <option class="tpd" value="lentidao">Lentidão</option>
+                                <option class="tpd" value="semFuncionamento">Sem Funcionamento</option>
+                                <option class="tpd" value="termoAvaliacao">Termo de Avaliação</option>
+                                <option class="tpd" value="travamento">Travamento</option>
+                            </div>
+
+                            <!---------------------------------------------------------------->   
+                            <div class="">
+                                <!-- Câmeras-Monitoramento dos Sites -->
+                                <option class="camerasMonitoramentoSites" value="configuracao">Configuração</option>
+                                <option class="camerasMonitoramentoSites" value="defeito">Defeito</option>
+                                <option class="camerasMonitoramentoSites" value="semGravacao">Sem gravação</option>
+
+                                <!-- COPOM SP-Despacho -->
+                                <option class="copomSPDespacho" value="configuracao">Configuração</option>
+                                <option class="copomSPDespacho" value="instalacaoDesistalacao">Instalação Desinstalação</option>
+                                <option class="copomSPDespacho" value="pdSemChaveCriptografia">PD sem chave de criptografia</option>
+                                <option class="copomSPDespacho" value="pdSemComunicacao">PD sem Comunicação</option>
+                                <option class="copomSPDespacho" value="semComunicacaoViatura">Sem comunicação com viaturas</option>
+
+                                <!-- Gravador Despacho -->
+                                <option class="gravadorDespacho" value="acessoGravador">Acesso ao Gravador</option>
+                                <option class="gravadorDespacho" value="gravadorInoperante">Gravador Inoperante</option>
+                                <option class="gravadorDespacho" value="pesquisaGravacao">Pesquisa De Gravação</option>
+
+                                <!-- Gravador Nice -->
+                                <option class="gravadorNice" value="gravadorInoperante">Gravador Inoperante</option>
+                                <option class="gravadorNice" value="solicitacaoAudio">Solicitação de Audio</option>
+
+                                <!-- Manutenção Corretiva-->
+                                <option class="manutencaoCorretiva" value="falhaDespacho">Falha Despacho</option>
+                                <option class="manutencaoCorretiva" value="falhaMasterSite">Falha Master Site</option>
+                                <option class="manutencaoCorretiva" value="falhaRadioEnlace">Falha Rádio Enlace</option>
+                                <option class="manutencaoCorretiva" value="falhaRepetidora">Falha Repetidora</option>
+
+                                <!-- Manutenção Preventiva -->
+                                <option class="manutencaoPreventiva" value="falhaDespacho">Falha Despacho</option>
+                                <option class="manutencaoPreventiva" value="falhaRadioEnlace">Falha Rádio Enlace</option>
+
+                                <!-- Rádio Comunicação Base Fixa -->
+                                <option class="radioComunicacaoBase" value="falhaChave">Falha de chave</option>
+                                <option class="radioComunicacaoBase" value="instalacaoNova">Instalação Nova</option>
+                                <option class="radioComunicacaoBase" value="mudancaLocalBaseFixa">Mudança de local de base fixa</option>
+                                <option class="radioComunicacaoBase" value="semComunicacao">Sem Comunicação</option>
+
+                                <!-- Rádio Comunicação HT -->
+                                <option class="radioComunicacaoHT" value="defeitosFisicos">Defeitos Físicos</option>
+                                <option class="radioComunicacaoHT" value="emprestimo">Empréstimo</option>
+                                <option class="radioComunicacaoHT" value="programacao">Programação</option>
+                                <option class="radioComunicacaoHT" value="sindicancia">Sindicância</option>
+
+                                <!-- Rádio Comunicação VTR -->
+                                <option class="radioComunicacaoVTR" value="agendamentoManutencao">Agendamento de Manutenção</option>
+                                <option class="radioComunicacaoVTR" value="defeitosFisicos">Defeitos Físicos</option>
+                                <option class="radioComunicacaoVTR" value="falhaChave">Falha de chave</option>
+                                <option class="radioComunicacaoVTR" value="instalacaoNova">Instalação Nova</option>
+                                <option class="radioComunicacaoVTR" value="sindicancia">Sindicância</option>
+
+                                <!-- Site de Repetição -->
+                                <option class="siteRepeticao" value="alteracaoERB">Alteração de ERB</option>
+                                <option class="siteRepeticao" value="configuracaoERB">Configuração de ERB</option>
+                                <option class="siteRepeticao" value="equipamentosTravados">Equipamentos travados</option>
+                                <option class="siteRepeticao" value="estudoCoberturaRadiofrequencia">Estudo de Cobertura de radiofrequência (RF)</option>
+                                <option class="siteRepeticao" value="interferenciaRadiofrequencia">Interferência de Radiofrequência (RE)</option>
+                                <option class="siteRepeticao" value="licenciamentoAnatelERB">Licenciamento ANATEL de ERB</option>
+                                <option class="siteRepeticao" value="manutencaoERB">Manutenção de ERB</option>
+                                <option class="siteRepeticao" value="manutencaoFonteEnergia">Manutenção de Fonte de Energia</option>
+                                <option class="siteRepeticao" value="manutencaoQUANTAR">Manutenção de QUANTAR</option>
+                                <option class="siteRepeticao" value="programacao">Programação</option>
+                                <option class="siteRepeticao" value="quedaEnlaceMicroondas">Queda de Enlace de Microondas</option>
+                                <option class="siteRepeticao" value="reclamacaoAreaSombra">Reclamação de Área de Sombra para Cobertura de RF</option>
+                                <option class="siteRepeticao" value="repetidoraTravada">Repetidora travada</option>
+                            </div>
+                            
+                            <!---------------------------------------------------------------->   
+                            <div class="">
+                                <!-- Ambiente -->
+                                <option class="ambiente" value="estudoProposicaoMelhorias">Estudo e proposição de melhorias</option>
+                                <option class="ambiente" value="firewallIndisponivel">Firewall indisponível</option>
+                                <option class="ambiente" value="manutencaoCorretiva">Manutenção Corretiva</option>
+                                <option class="ambiente" value="manutencaoPreventiva">Manutenção Preventiva</option>
+
+                                <!-- ArcSight -->
+                                <option class="arcSight" value="configuracao">Configuração</option>
+                                <option class="arcSight" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="arcSight" value="relatorio">Relatório</option>
+
+                                <!-- CA Performance Monitor -->
+                                <option class="caPerformanceMonitor" value="configuracao">Configuração</option>
+                                <option class="caPerformanceMonitor" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="caPerformanceMonitor" value="relatorio">Relatório</option>
+
+                                <!-- CA Spectrum -->
+                                <option class="caSpectrum" value="configuracao">Configuração</option>
+                                <option class="caSpectrum" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="caSpectrum" value="insercaoEquipamento">Inserção de Equipamento</option>
+                                <option class="caSpectrum" value="relatorio">Relatório</option>
+                                <option class="caSpectrum" value="remocaoAcesso">Remoção de Acesso</option>
+
+                                <!-- Cabeamento -->
+                                <option class="cabeamento" value="crimpagemCabo">Crimpagem do Cabo</option>
+                                <option class="cabeamento" value="identificacaoPonto">Identificação de Ponto</option>
+                                <option class="cabeamento" value="instalacaoPontoRede">Instalação de Ponto de Rede</option>
+                                <option class="cabeamento" value="pontoRedeNaoFunciona">Ponto de rede não funciona</option>
+                                <option class="cabeamento" value="validacaoConexao">Validação de Conexões</option>
+
+                                <!-- Captive Portal -->
+                                <option class="captivePortal" value="erro">Erro</option>
+
+                                <!-- CMDO -->
+                                <option class="cmdo" value="acessoFuncionarioCivil">Acesso para funcionário civil</option>
+                                <option class="cmdo" value="acessoTemporarioMilitar">Acesso temporário militar</option>
+                                <option class="cmdo" value="acesso">Acessos</option>
+                                <option class="cmdo" value="alteracaoSenhaAD">Alteração de senha do AD</option>
+                                <option class="cmdo" value="falhaAcesso">Falha no acesso</option>
+                                <option class="cmdo" value="reativacaoAcesso">Reativação de acesso</option>
+                                <option class="cmdo" value="recuperacaoArquivo">Recuperação de arquivo</option>
+                                <option class="cmdo" value="remocaoAcessoAD">Remoção de Acesso AD</option>
+                                
+                                <!-- Conexões Entrantes -->
+                                <option class="conexoesEntrantes" value="configuracao">Configuração</option>
+                                <option class="conexoesEntrantes" value="indisponibilidadeLocal">Indisponibilidade Local</option>
+                                <option class="conexoesEntrantes" value="indisponibilidadePMESP">Indisponibilidade PMESP</option>
+                                <option class="conexoesEntrantes" value="lentidao">Lentidão</option>
+                                
+                                <!-- DHCP -->
+                                <option class="dhcp" value="configuracao">Configuração</option>
+                                <option class="dhcp" value="indisponibilidadeLocal">Indisponibilidade Local</option>
+                                <option class="dhcp" value="indisponibilidadePMESP">Indisponibilidade PMESP</option>
+                                <option class="dhcp" value="relatorio">Relatório</option>
+                                <option class="dhcp" value="verificacao">Verificação</option>
+
+                                <!-- DNS -->
+                                <option class="dns" value="configuracao">Configuração</option>
+                                <option class="dns" value="lentidao">Criação de entrada</option>
+                                <option class="dns" value="indisponibilidadeLocal">Indisponibilidade Local</option>
+                                <option class="dns" value="indisponibilidadePMESP">Indisponibilidade PMESP</option>
+
+                                <!-- Documentação -->
+                                <option class="documentacao" value="analiseDocumentos">Análise de documentos</option>
+                                <option class="documentacao" value="cadernoTestes">Caderno de testes</option>
+                                <option class="documentacao" value="documentacaoGeral">Documentação geral</option>
+                                <option class="documentacao" value="elaboracaoDocumentacao">Elaboração de documento</option>
+                                <option class="documentacao" value="estudoEspecificacaoTecnica">Estudo de especificação técnica</option>
+                                <option class="documentacao" value="formatacao">Formatação</option>
+                                <option class="documentacao" value="planilhaControle">Planilha de controle</option>
+                                <option class="documentacao" value="planoTrabalho">Plano de Trabalho</option>
+                                <option class="documentacao" value="projetoBasico">Projeto básico</option>
+                                <option class="documentacao" value="revisao">Revisão</option>
+                                <option class="documentacao" value="topologia">Topologia</option>
+                                
+                                <!-- DUO-->
+                                <option class="duo" value="configuracao">Configuração</option>
+                                <option class="duo" value="indisponibilidade">Indisponibilidade</option>
+
+                                <!-- Equipamentos -->
+                                <option class="equipamentos" value="fornecidos">Fornecidos</option>
+
+                                <!-- Equipamentos Radio Digital-->
+                                <option class="equipamentosRadioDigital" value="configuracao">Configuração</option>
+                                <option class="equipamentosRadioDigital" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="equipamentosRadioDigital" value="verificacao">Verificação</option>
+
+                                <!-- Equipamentos Rede Datacenter -->
+                                <option class="equipamentosRedeDatacenter" value="acessoSala">Acesso a sala</option>
+                                <option class="equipamentosRedeDatacenter" value="configuracao">Configuração</option>
+                                <option class="equipamentosRedeDatacenter" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="equipamentosRedeDatacenter" value="instalacaoEquipamento">Instalação de Equipamento</option>
+                                <option class="equipamentosRedeDatacenter" value="verificacao">Verificação</option>
+
+                                <!-- Firewall -->
+                                <option class="firewall" value="configuracao">Configuração</option>
+                                <option class="firewall" value="criacaoRegra">Criação de Regra</option>
+                                <option class="firewall" value="remocaoRegra">Remoção de Regra</option>
+                                <option class="firewall" value="revisaoRegra">Revisão de Regra</option>
+
+                                <!-- Gerência -->
+                                <option class="gerencia" value="controleAdministativo">Controle administrativo</option>
+                                <option class="gerencia" value="projeto">Projeto</option>
+                                <option class="gerencia" value="reuniao">Reunião</option>
+
+                                <!-- Gerência -->
+                                <option class="grafana" value="ajustesDashbord">Ajustes de Dashboard</option>
+                                <option class="grafana" value="criacaoDashbord">Criação de Dashboard</option>
+                                <option class="grafana" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="grafana" value="lentidao">Lentidão</option>
+                                <option class="grafana" value="liberacaoAcesso">Liberação de Acesso</option>
+                                <option class="grafana" value="outros">Outros</option>
+                                <option class="grafana" value="remocaoAcesso">Remoção de Acesso</option>
+                                <option class="grafana" value="remocaoDashbord">Remoção de Dashboard</option>
+                                
+                                <!-- Intranet -->
+                                <option class="intranet" value="acessos">Acessos</option>
+                                <option class="intranet" value="configuracao">Configuração</option>
+                                <option class="intranet" value="lentidao">Lentidão</option>
+                                <option class="intranet" value="naoCarregaConteudo">Não Carrega o Conteúdo</option>
+                                <option class="intranet" value="travamento">Travamento</option>
+
+                                <!-- ISE -->
+                                <option class="ise" value="configuracao">Configuração</option>
+                                <option class="ise" value="indisponibilidade">Indisponibilidade</option>
+
+                                <!-- Link Intragov Alta -->
+                                <option class="linkIntragovAlta" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="linkIntragovAlta" value="lentidao">Lentidão</option>
+
+                                <!-- Link Intragov Alta - SITES-->
+                                <option class="linkIntragovAltaSites" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="linkIntragovAltaSites" value="lentidao">Lentidão</option>
+
+                                <!-- Link Intragov Baixa -->
+                                <option class="linkIntragovBaixa" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="linkIntragovBaixa" value="lentidao">Lentidão</option>
+
+                                <!-- Link Intragov Câmeras -->
+                                <option class="linkIntragovCameras" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="linkIntragovCameras" value="lentidao">Lentidão</option>
+                                
+                                <!-- Link Intragov Média -->
+                                <option class="linkIntragovMedia" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="linkIntragovMedia" value="lentidao">Lentidão</option>
+
+                                <!-- Link Intragov Rede Intragov -->
+                                <option class="linkIntragovInterna" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="linkIntragovInterna" value="lentidao">Lentidão</option>
+
+                                <!-- Link Intragov Solicitacao -->
+                                <option class="linkIntragovSolicitacao" value="alteracaoEndereco">Alteração de Endereço</option>
+                                <option class="linkIntragovSolicitacao" value="alteracaoLocalEquipamento">Alteração de Local do Equipamento</option>
+                                <option class="linkIntragovSolicitacao" value="ativacaoEquipamento">Ativação de Equipamento</option>
+                                <option class="linkIntragovSolicitacao" value="cancelamento">Cancelamento</option>
+                                <option class="linkIntragovSolicitacao" value="configuracaoCP">Configuração de CP	</option>
+                                <option class="linkIntragovSolicitacao" value="manutencao">Manutenção</option>
+                                <option class="linkIntragovSolicitacao" value="novo">Novo</option>
+                                <option class="linkIntragovSolicitacao" value="redundancia">Redundância</option>
+                                <option class="linkIntragovSolicitacao" value="relatorio">Relatório</option>
+                                <option class="linkIntragovSolicitacao" value="upgrade">UpGrade</option>
+                                
+                                <!-- NetBox -->
+                                <option class="netbox" value="acessoUsuario">Acesso a usuário</option>
+                                <option class="netbox" value="cadastro">Cadastro</option>
+                                <option class="netbox" value="indisponibilidadeParcial">Indisponibilidade Parcial</option>
+
+                                <!-- NOC -->
+                                <option class="noc" value="dispatcherChamado">Dispatcher de Chamado</option>
+
+                                <!-- Páginas de Internet PMESP -->
+                                <option class="paginasIntranetPMESP" value="criacao">Criação</option>
+                                <option class="paginasIntranetPMESP" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="paginasIntranetPMESP" value="manutencao">Manutenção</option>
+                                <option class="paginasIntranetPMESP" value="remocao">Remoção</option>
+
+                                <!-- POC -->
+                                <option class="poc" value="configuracao">Configuração</option>
+                                <option class="poc" value="provisionamentoRedePoc">Provisionamento de rede para PoC</option>
+
+                                <!-- Proatividade -->
+                                <option class="proatividade" value="atividadeExecutadas">Atividades executadas</option>
+                                <option class="proatividade" value="verificacaoAmbiente">Verificação do ambiente</option>
+
+                                <!-- Projeto Técnico -->
+                                <option class="projetoTecnico" value="excucaoProjeto">Execução de Projeto</option>
+                                <option class="projetoTecnico" value="relatorio">Relatório</option>
+
+                                <!-- Rádio -->
+                                <option class="radio" value="configuracaoRede">Configuração de Rede</option>
+                                <option class="radio" value="verificacao">Verificação</option>
+
+                                <!-- Relatórios -->
+                                <option class="relatorios" value="relatorioAtendimentoEquipes">Relatório de atendimento por equipes</option>
+                                <option class="relatorios" value="relatorioSaudeInterfaces">Relatório de saúde de interfaces</option>
+                                <option class="relatorios" value="relatorioSaudeLinkIntragov">Relatório de saúde de link Intragov</option>
+                                <option class="relatorios" value="relatorioDiversos">Relatórios diversos</option>
+
+                                <!-- Reunião -->
+                                <option class="reuniao" value="reuniaoAgendada">Reunião agendada</option>
+                                <option class="reuniao" value="reuniaoEmergencial">Reunião emergencial</option>
+
+                                <!-- Roteador -->
+                                <option class="roteador" value="configuracao">Configuração</option>
+                                <option class="roteador" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="roteador" value="verificacao">Verificação</option>
+
+                                <!-- Segurança Geral -->
+                                <option class="segurancaGeral" value="analiseIncidente">Análise de incidente</option>
+                                <option class="segurancaGeral" value="avaliacaiRiscoIniciais">Avaliação de riscos iniciais</option>
+                                <option class="segurancaGeral" value="controleAcessoUsuario">Controle de acesso de usuário</option>
+                                <option class="segurancaGeral" value="correcaoVulnerabilidade">Correção de vulnerabilidade</option>
+                                <option class="segurancaGeral" value="fornecimentoIP">Fornecimento de IP</option>
+                                <option class="segurancaGeral" value="mitigacaoAtaque">Mitigação de ataque</option>
+                                <option class="segurancaGeral" value="provisionamentoRedeApp">Provisionamento de rede para aplicação</option>
+                                <option class="segurancaGeral" value="testesSeguranca">Testes de Segurança</option>
+                                <option class="segurancaGeral" value="threatHuntin">Threat Huntin</option>
+
+                                <!-- Servidor Cluster de Rede -->
+                                <option class="servidorClusterRede" value="configuracao">Configuração</option>
+                                <option class="servidorClusterRede" value="criacao">Criação</option>
+                                <option class="servidorClusterRede" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="servidorClusterRede" value="remocao">Remoção</option>
+
+                                <!-- Servidor de Arquivos -->
+                                <option class="servidorArquivos" value="configuracao">Configuração</option>
+                                <option class="servidorArquivos" value="discoCheio">Disco Cheio</option>
+
+                                <!-- Servidores de Rede -->
+                                <option class="servidoresRede" value="configuracao">Configuração</option>
+                                <option class="servidoresRede" value="indisponibilidade">Indisponibilidade</option>
+
+                                <!-- Spark -->
+                                <option class="spark" value="criacao">Criação</option>
+                                <option class="spark" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="spark" value="instalacao">Instalação</option>
+                                <option class="spark" value="liberacaoAcesso">Liberação de acesso</option>
+                                <option class="spark" value="relatorio">Relatório</option>
+
+                                <!-- Switch Acesso -->
+                                <option class="swithAcesso" value="configuracao">Configuração</option>
+                                <option class="swithAcesso" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="swithAcesso" value="instalacaoEquipamento">Instalação de Equipamento</option>
+                                <option class="swithAcesso" value="verificacao">Verificação</option>
+
+                                <!-- Switch Core -->
+                                <option class="swithCore" value="configuracao">Configuração</option>
+                                <option class="swithCore" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="swithCore" value="verificacao">Verificação</option>
+
+                                <!-- Switch Distribuição/Servidores -->
+                                <option class="swithDistribuicaoServidores" value="configuracao">Configuração</option>
+                                <option class="swithDistribuicaoServidores" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="swithDistribuicaoServidores" value="verificacao">Verificação</option>
+
+                                <!-- Treinamento -->
+                                <option class="treinamento" value="treinamentoEquipe">Treinamento de equipe</option>
+                                <option class="treinamento" value="treinamentoOutraSecao">Treinamento para outra seção</option>
+
+                                <!-- Troubleshooting -->
+                                <option class="troubleshooting" value="troubleshootingRedeImpactoLocal">Troubleshooting de rede - Impacto Local</option>
+                                <option class="troubleshooting" value="troubleshootingRedeImpactoPMESP">Troubleshooting de rede - Impacto PMESP</option>
+
+                                <!-- Umbrella -->
+                                <option class="umbrella" value="categorizacaoURL">Categorização de URL</option>
+                                <option class="umbrella" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="umbrella" value="liberacaoAcessoSitesBloquados">Liberação de acesso a sites bloqueados</option>
+
+                                <!-- Vistoria -->
+                                <option class="vistoria" value="acompanhamentoOperadora">Acompanhamento Operadora</option>
+                                <option class="vistoria" value="relatorioVisitaTecnica">Relatório de Visita Técnica</option>
+                                <option class="vistoria" value="visitaTecnicaCopom">Visita Técnica COPOM</option>
+                                <option class="vistoria" value="visitaTecnicaUnidade">Visita Técnica em Unidade</option>
+
+                                <!-- VPN -->
+                                <option class="vpn" value="bloqueioAcesso">Bloqueio de Acesso</option>
+                                <option class="vpn" value="configuracao">Configuração</option>
+                                <option class="vpn" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="vpn" value="liberacaoAcesso">Liberação de acesso</option>
+
+                                <!-- WI-FI -->
+                                <option class="wifi" value="configuracao">Configuração</option>
+                                <option class="wifi" value="implantacao">Implantação</option>
+                                <option class="wifi" value="indisponibilidadeLocal">Indisponibilidade Local</option>
+                                <option class="wifi" value="indisponibilidadePMESP">Indisponibilidade PMESP</option>
+                                <option class="wifi" value="instalacaoEquipamento">Instalação de Equipamento</option>
+                                <option class="wifi" value="problemasConectividade">Problemas de Conectividade</option>
+                                <option class="wifi" value="siteSurvey">Site Survey</option>
+                                <option class="wifi" value="usuarioNaoConecta">Usuário não conecta</option>
+                                <option class="wifi" value="verificacao">Verificação</option>
+                                
+                                <!-- Zabbix -->
+                                <option class="zabbix" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="zabbix" value="insercaoEquipamento">Inserção de equipamento</option>
+                                <option class="zabbix" value="lentidao">Lentidão</option>
+                                <option class="zabbix" value="liberacaoAcesso">Liberação de acesso</option>
+                                <option class="zabbix" value="outros">Outros</option>
+                                <option class="zabbix" value="remocaoAcesso">Remoção de Acesso</option>
+                                <option class="zabbix" value="remocaoEquipamento">Remoção de Equipamento</option>
+                            </div>
+
+                            <!----------------------------------------------------------------> 
+                            <div class="">
+                                <!-- Auditoria -->
+                                <option class="auditoria" value="conformidade">Conformidade</option>
+                                <option class="auditoria" value="contas">Contas</option>
+                                <option class="auditoria" value="eventos">Eventos</option>
+                                <option class="auditoria" value="gops">GPO's</option>
+                                <option class="auditoria" value="grupos">Grupos</option>
+                            </div>
+
+                            <!----------------------------------------------------------------> 
+                            <div class="">
+                                <!-- Aumento de Capacidade -->
+                                <option class="aumentoCapacidade" value="disco">Disco</option>
+                                <option class="aumentoCapacidade" value="memoria">Memória</option>
+                                <option class="aumentoCapacidade" value="processador">Processador</option>
+
+                                <!-- Certificado Digital -->
+                                <option class="certificadoDigital" value="instalacao">Instalação</option>
+                                <option class="certificadoDigital" value="renovacao">Renovação</option>
+
+                                <!-- DEVOPS -->
+                                <option class="devops" value="deploymentGroup">DEPLOYMENT GROUP</option>
+                                <option class="devops" value="libraryVariableGroups">LIBRARY - VARIABLE GROUPS</option>
+                                <option class="devops" value="primeiraImplementacao">PRIMEIRA IMPLEMENTAÇÃO</option>
+
+                                <!-- Hospedagem de Aplicações -->
+                                <option class="hospedagemAplicacoes" value="configuracao">Configuração</option>
+                                <option class="hospedagemAplicacoes" value="criacao">Criação</option>
+                                <option class="hospedagemAplicacoes" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="hospedagemAplicacoes" value="instalacao">Instalação</option>
+                                <option class="hospedagemAplicacoes" value="remocao">Remoção</option>
+                                <option class="hospedagemAplicacoes" value="solicitarLog">Solicitar Log</option>
+
+                                <!-- Hospedagem de Página Intranet -->
+                                <option class="hospedagemPaginaIntranet" value="criacaoAmbiente">Criação (ambiente)</option>
+                                <option class="hospedagemPaginaIntranet" value="indisponibilidade">Indisponibilidade
+                                <option class="hospedagemPaginaIntranet" value="remocaoSite">Remoção do Site</option>
+                                <option class="hospedagemPaginaIntranet" value="retirarPaginaAr">Retirar Página do ar</option>
+                                
+                                <!-- Servidor de arquivos -->
+                                <option class="servidorArquivos" value="aumentoArmazenamento">Aumento de armazenamento</option>
+                                <option class="servidorArquivos" value="aumentoMemoria">Aumento de memória</option>
+                                <option class="servidorArquivos" value="configurarPermissionamento">Configurar permissionamento</option>
+                                <option class="servidorArquivos" value="criacao">Criação</option>
+                                <option class="servidorArquivos" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="servidorArquivos" value="informacao">Informação</option>
+                                <option class="servidorArquivos" value="manutencao">Manutenção</option>
+                                <option class="servidorArquivos" value="remocao">Remoção</option>
+                                
+                                <!-- Servidor de Impressão -->
+                                <option class="servidorImpressao" value="criacao">Criação</option>
+                                <option class="servidorImpressao" value="indisponibilidade">Indisponibilidade</option>
+                                <option class="servidorImpressao" value="remocao">Remoção</option>
+
+                                <!-- Windows -->
+                                <option class="windows" value="log">Log</option>
+                            </div>
+
+
+
+
+
+                        <!-- next subcat -->
+
+                            </select>
+                        </div>
+
+                        <div class="boxAnexos">
+                            <form id='form' action='' method='post' enctype='multipart/form-data'>
+                                <label class="file-upload">
+                                    <img src="Img/paper.png" alt="Upload">
+                                    <span>Escolher Arquivos</span>
+                                    <input id='file-input' type='file' name='file' onchange="handleFiles(this)" multiple />
+                                </label>
+                                <p id="error-message" style="color: red; display: none;">Tamanho máximo permitido: 5MB</p>
+                            </form>
+                            <ul id="dp-files" class="file-list"></ul>
+                        
+                            <div id="modal" class="modal" onclick="closeModal()">
+                                <span class="close">&times;</span>
+                                <div class="modal-content" id="modal-content"></div>
+                            </div>
+                        </div>
+
+
+                        
+                    </div>
+                </div>
+
+                <button type="submit" class="btnSalvarChamado">Salvar Chamado</button>
+
+            </div>
+        </section>
+
+    </form>
+
+<!-- Footer-->
+<section id="contatos">
+    <footer class="rodape">
+        <h1 class="titleRodape">Alguma dúvida?</h1>
+        <p class="txtRodape">Obrigado pela sua atenção, aqui vão alguns dos meus contatos:</p>
+        <p class="txtRodape">Email: nicolasalmeida1@yahoo.com</p>
+        <p class="txtRodape">WhatsApp: (11) 94137-7733</p>
+        <div class="boxRodapeImg">
+            <a href="https://www.linkedin.com/in/nicolas-almeida-376284244/"><img class="redeImg" src="Img/linkedin2.png" alt="LinkedIn"></a>
+            <a href="https://www.facebook.com/nicolas.almeida.1042/"><img class="redeImg" src="Img/facebook2.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/nicolas29sousa/"><img class="redeImg" src="Img/instagram2.png" alt="Instagram"></a>
+            <a href="https://github.com/NicolasStudio"><img class="redeImg" src="Img/github2.png" alt="GitHub"></a>
+            <a href="https://api.whatsapp.com/send?phone=11941377733"><img class="redeImg" src="Img/whatsapp.png" alt="WhatsApp"></a>
+        </div>
+        <p class="txtRodape">©Nicolas de Almeida Sousa. Todos os direitos reservados.</p>
+
+        <center class="linkDireitosAutorais">
+            <a href="https://www.flaticon.com/br/icones-gratis/linkedin" title="linkedin ícones">Linkedin ícones criados por IconsBox - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/facebook" title="facebook ícones">Facebook ícones criados por justicon - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/logotipo-do-instagram" title="logotipo do instagram ícones">Logotipo do instagram ícones criados por justicon - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/github" title="github ícones">Github ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/whatsapp" title="whatsapp ícones">Whatsapp ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/cadastro" title="cadastro ícones">Cadastro ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/big-data" title="big data ícones">Big data ícones criados por Freepik - Flaticon</a> //
+            <a href="https://www.flaticon.com/br/icones-gratis/troca-de-dados" title="troca de dados ícones">Troca de dados ícones criados por smashingstocks - Flaticon</a>
+            <a href="https://www.flaticon.com/free-icons/fix" title="fix icons">Fix icons created by alekseyvanin - Flaticon</a>
+        </center>
+    </footer>
+</section> 
+
+</body>
+</html>

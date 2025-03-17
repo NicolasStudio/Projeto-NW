@@ -1,0 +1,178 @@
+/* Estilos globais */
+*{
+    margin: 0; /* Remove a margem de todos os elementos */
+    padding: 0; /* Remove o padding de todos os elementos */
+    box-sizing: border-box; /* Inclui padding e borda no cálculo do tamanho total do elemento */
+    background-color: none; /* Remove qualquer cor de fundo aplicada globalmente */
+}
+
+/* Container para o login e cadastro */
+.containerLoginCad{
+    width: 36%; /* Largura do container */
+    height: auto; /* Altura automática para ajustar o conteúdo */
+    margin-top: 6%; /* Espaço superior */
+    margin-left: 32%; /* Centraliza o container horizontalmente */
+    background-color: #444; /* Cor de fundo escura */
+    border-radius: 14px; /* Bordas arredondadas */
+    box-shadow: 10px 8px 3px 0 rgba(0, 0, 0, 0.5); /* Sombra no container */
+    margin-bottom: 6%; /* Espaço inferior */
+}
+
+/* Estilos para a imagem dentro do container de login/cadastro */
+.containerLoginCad img{
+    width: 20%; /* Define a largura da imagem */
+    margin-top: 8%; /* Espaço superior da imagem */
+    margin-left: 40%; /* Centraliza a imagem horizontalmente */
+    margin-bottom: 14%; /* Espaço inferior da imagem */
+}
+
+/* Estilos para o campo de login (oculto inicialmente) */
+.box-container-login{
+    display: none; /* Deixa o container de login invisível */
+}
+
+/* Rótulo do campo de login */
+.lblEntrar{
+    font-size: clamp(8px, 4vw, 24px); /* Tamanho de fonte flexível */
+    font-weight: 600; /* Peso da fonte */
+    margin-left: 10%; /* Espaço à esquerda */
+    color: #fff; /* Cor da fonte */
+}
+
+/* Estilos para o campo de entrada numérica (sem o botão de rolagem) */
+.inputDadosNumber::-webkit-inner-spin-button{
+    -webkit-appearance: none; /* Remove o botão de rolagem para números em alguns navegadores */
+}
+
+/* Estilos para o campo de entrada do login */
+.inputEntrar{
+    margin-top: 2%; /* Espaço superior */
+    margin-bottom: 4%; /* Espaço inferior */
+    color:#333; /* Cor da fonte */
+    font-size: clamp(8px, 4vw, 20px); /* Tamanho de fonte flexível */
+    padding: 1px 8px; /* Espaçamento interno */
+    font-weight: 400; /* Peso da fonte */
+    border: 3px solid #333; /* Borda ao redor do campo */
+    box-shadow: 0px 3px 0.5rem #333; /* Sombra ao redor do campo */
+    margin-left: 10%; /* Espaço à esquerda */
+    outline: none; /* Remove o contorno ao clicar no campo */
+    width: 80%; /* Largura do campo */
+    height: 2.2rem; /* Altura do campo */
+}
+
+/* Estilos para o botão de login */
+.btnEntrar{
+    width: 40%; /* Largura do botão */
+    height: 2.5rem; /* Altura do botão */
+    background-color: #fff ; /* Cor de fundo do botão */
+    font-size: clamp(8px, 4vw, 20px); /* Tamanho de fonte flexível */
+    color: #000; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Aponta que é um botão clicável */
+    margin-top: 5%; /* Espaço superior */
+    margin-left: 30%; /* Centraliza o botão */
+    margin-bottom: 4%; /* Espaço inferior */
+    outline: none !important; /* Remove o contorno ao clicar no botão */
+    font-weight: 600; /* Peso da fonte */
+}
+
+/* Estilos para quando o botão de login é pressionado ou quando o cursor está sobre ele */
+.btnEntrar:hover, .btnEntrar:active {
+    background-color: #dbdada; /* Cor de fundo quando pressionado ou em hover */
+    color: #000; /* Cor do texto */
+    font-size: clamp(8px, 4vw, 19px); /* Ajusta o tamanho da fonte */
+}
+
+/* Link para criar uma nova conta (cadastro) */
+.linkCriarCad{
+    text-decoration: none; /* Remove o sublinhado do link */
+    width: auto; /* Largura automática */
+    height: 1.4rem; /* Altura do link */
+    background-color: #444 ; /* Cor de fundo do link */
+    font-size: clamp(8px, 4vw, 18px); /* Tamanho de fonte flexível */
+    color: #ff2a2a; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Aponta que é um botão clicável */
+    margin-top: 10%; /* Espaço superior */
+    text-align: center; /* Alinha o texto ao centro */
+    justify-content: center; /* Alinha o conteúdo ao centro */
+    display: flex; /* Usa o flexbox para layout */
+    margin-bottom: 1%; /* Espaço inferior */
+    outline: none !important; /* Remove o contorno ao clicar */
+    font-weight: 400; /* Peso da fonte */
+}
+
+/* Link de cadastro (utilizado em um container separado) */
+.linkCad{
+    height: 5rem; /* Define a altura do link */
+}
+
+/* Estilos para o container de cadastro */
+.box-container-cadastro{
+    display: block; /* Exibe o container de cadastro */
+}
+
+/* Estilos para a linha separadora dentro do cadastro */
+.box-container-cadastro hr{
+    margin: 30px 15px; /* Margens ao redor da linha */
+}
+
+/* Estilos para o título do cadastro */
+.box-container-cadastro h3{
+    font-size: clamp(8px, 3vw, 22px); /* Tamanho de fonte flexível */
+    font-weight: 600; /* Peso da fonte */
+    color: #fff; /* Cor do texto */
+}
+
+/* Rótulo do campo de cadastro */
+.lblCad{
+    font-size: clamp(8px, 3vw, 20px); /* Tamanho de fonte flexível */
+    font-weight: 600; /* Peso da fonte */
+    margin-left: 10%; /* Espaço à esquerda */
+    color: #fff; /* Cor da fonte */
+}
+
+/* Estilos para os campos de entrada de dados */
+.inputDados, .inputDadosNumber, .inputDadosSenha{
+    margin-top: 2%; /* Espaço superior */
+    margin-bottom: 4%; /* Espaço inferior */
+    color:#333; /* Cor da fonte */
+    font-size: clamp(8px, 4vw, 18px); /* Tamanho de fonte flexível */
+    padding: 1px 8px; /* Espaçamento interno */
+    font-weight: 400; /* Peso da fonte */
+    border: 3px solid #333; /* Borda ao redor do campo */
+    box-shadow: 0px 3px 0.5rem #333; /* Sombra ao redor do campo */
+    margin-left: 10%; /* Espaço à esquerda */
+    outline: none; /* Remove o contorno */
+    width: 80%; /* Largura do campo */
+    height: 2.2rem; /* Altura do campo */
+}
+
+/* Estilos específicos para o campo de número */
+.inputDadosNumber{
+    margin-left: 2%; /* Espaço à esquerda menor */
+    width: 30%; /* Largura reduzida */
+}
+
+/* Estilos para o botão de cadastro */
+.btnCadastrar{
+    width: 40%; /* Largura do botão */
+    height: 2.5rem; /* Altura do botão */
+    background-color: #fff ; /* Cor de fundo do botão */
+    font-size: clamp(8px, 4vw, 20px); /* Tamanho de fonte flexível */
+    color: #000; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Aponta que é um botão clicável */
+    margin-top: 5%; /* Espaço superior */
+    margin-left: 30%; /* Centraliza o botão */
+    margin-bottom: 8%; /* Espaço inferior */
+    outline: none !important; /* Remove o contorno ao clicar */
+    font-weight: 600; /* Peso da fonte */
+}
+
+/* Estilos para quando o botão de cadastro é pressionado ou quando o cursor está sobre ele */
+.btnCadastrar:hover, .btnCadastrar:active {
+    background-color: #dbdada; /* Cor de fundo quando pressionado ou em hover */
+    color: #000; /* Cor do texto */
+    font-size: clamp(8px, 4vw, 19px); /* Ajusta o tamanho da fonte */
+}

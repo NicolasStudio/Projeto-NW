@@ -1,0 +1,197 @@
+/* Conteúdo do pop-up */
+/* Estilo do Pop-up */
+.popup {
+    display: none; /* Oculto por padrão */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.popup h3{
+    font-size: clamp(8px, 3vw, 22px); /* Tamanho de fonte flexível */
+    font-weight: 600; /* Peso da fonte */
+    color: #fff; /* Cor do texto */
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+/* Tornar o pop-up visível quando ativo */
+.popup.ativo {
+    display: flex; /* Exibe novamente */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Conteúdo do pop-up */
+.popup-content {
+    background: #555;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: 20rem;
+    text-align: center;
+}
+
+/* Botão de fechar */
+.fechar-popup {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    flex-wrap: wrap; /* Permite que o texto quebre */
+}
+
+.fechar-popup:hover {
+    background-color: #d32f2f;
+}
+
+.inputCad{
+    margin-top: 2%; /* Espaço superior */
+    margin-bottom: 4%; /* Espaço inferior */
+    color:#333; /* Cor da fonte */
+    font-size: clamp(8px, 4vw, 18px); /* Tamanho de fonte flexível */
+    padding: 1px 8px; /* Espaçamento interno */
+    font-weight: 400; /* Peso da fonte */
+    border: 3px solid #333; /* Borda ao redor do campo */
+    box-shadow: 0px 3px 0.5rem #333; /* Sombra ao redor do campo */
+    margin-left: 10%; /* Espaço à esquerda */
+    outline: none; /* Remove o contorno */
+    width: 80%; /* Largura do campo */
+    height: 2.2rem; /* Altura do campo */
+}
+
+
+.btnValidarBusca{
+    background-color: #34d142;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Estilos para quando o botão de cadastro é pressionado ou quando o cursor está sobre ele */
+.btnValidarBusca:hover, .btnValidarBusca:active {
+    background-color: #47e754;
+}
+
+
+/* Container principal */
+.containerTable {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+/* Título */
+.containerTable h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    margin-top: 2%;
+    margin-bottom: 4%;
+    color: #333;
+}
+
+/* Layout de informações */
+.informacoes {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho da tabela */
+.tituloChamados {
+    background: #333;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Lista do cabeçalho */
+.listaChamados {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.listaChamados li {
+    padding: 8px;
+    font-size: 1rem;
+}
+
+/* Lista dos chamados */
+.listaDeCadaChamado {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    background: #ffff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Cada item da lista vira um link */
+.listaDeCadaChamado li a {
+    display: block;
+    padding: 10px;
+    font-size: 0.95rem;
+    color: #007bff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Efeito ao passar o mouse */
+.listaDeCadaChamado li a:hover {
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Clique com efeito de pressionado */
+.listaDeCadaChamado li a:active {
+    background: #0056b3;
+}
+
+/* Alternando cores entre linhas */
+.listaDeCadaChamado:nth-child(odd) {
+    background: #d3d3d3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .listaChamados,
+    .listaDeCadaChamado {
+        grid-template-columns: repeat(2, 1fr); /* Em telas menores, duas colunas */
+        text-align: left;
+    }
+
+    .tituloChamados {
+        text-align: center;
+    }
+}

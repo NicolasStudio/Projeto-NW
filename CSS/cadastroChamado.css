@@ -1,0 +1,331 @@
+.containerCadastro {
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 15%;
+}
+
+.infoPrimary {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #555;
+    padding: 5px;
+    gap: 10px;
+}
+
+.infoPrimary p, .infoPrimary span {
+    font-size: clamp(12px, 3vw, 20px);
+    padding: 5px;
+    border-radius: 5px;
+    flex: 1;
+    margin: 0;
+    text-align: center;
+}
+
+/* Novo contêiner para manter as colunas lado a lado */
+.infoContainer {
+    display: flex; /* Organiza as colunas lado a lado */
+    gap: 20px; /* Espaçamento entre as colunas */
+    margin-top: 5%;
+}
+
+/* Estilos das colunas */
+.infoSecond, .infoFourth {
+    width: 25%; /* Mantém a largura das colunas */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os elementos dentro das colunas */
+}
+
+/* Outros estilos já definidos */
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.lblCad {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.inputCad {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.inputCad2 {
+    width: 90%;
+    height: 100px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    resize: none; 
+    overflow-y: auto;
+}
+
+.infoThird {
+    width: 50%; /* Mantém a largura das colunas */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os elementos dentro das colunas */
+}
+
+
+.infoFourth{
+
+
+}
+
+/* SERVIÇOS  */
+.appPMESP, .appDiversos, .copAxon, .copMotorolla, .correio, .dciTelefoniaAdm, .hardware, 
+.plataformasMoveis, .radioComunicacao, .rede, .segActiveDirectory, .servidor{
+    display: none;
+}
+
+/* categorias do AppPMESP */
+.boe, .copomOnline, .detecta, .holerite, .medalhaValor, .ead, 
+.ms, .pericias, .sicoordop, .siopmCorp, .siopmWeb, 
+.siplClient, .siplWeb, .sirh, .sisbol, .sitaf, .webAia{
+    display: none;
+}
+
+/* categoria do appDiversos */
+.antivirusKaspersky, .apoioOperacional, .chrome, .citrix, 
+.citrixReceiver, .ftp, .office2007, .office2010, .office2013,
+.sei{
+    display: none;
+}
+
+/* categoria COP AXON */
+.acessorioFixacao, .cabeamentoLogico, .cameraBluetooth, .cameraUSB, 
+.cameraLente, .cameraMicrofone, .cameraBateria, .camerasBotoes, 
+.camerasCarcaca, .camerasLedDisplay, .computadorCabos, .computadorCPU,
+.computadorMonitor, .computadorMouse, .computadorTeclado, .computadorUsoGeral,
+.docaCarcaca, .docaConexaoRede, .docaFonteAlimentacao, .docaPinoUSB, 
+.equipamentosTelecom, .estabilizadorTensao, .gravadorDVD, .instalacoesEletricas, 
+.linkInternet, .livePlataforma, .liveTransmissao, .mobiliario, 
+.plataformaEvidence, .tablet, .usuarios{
+    display: none;
+}
+
+/* Categoria Motorolla */
+.acionamentoAutomatico, .atribuicaoAutomatica, .audioBidirecional,
+.camerasGPS, .cartaoRFID, .siopmDespacho {
+    display: none;
+}
+
+/* Categoria Correio */
+.contaNotes, .ibmDominioServer, .ibmNotesClient, .ibmNotesWeb, .outlook, 
+.postfix, .sametime, .spam, .sparkFramework, .travaler{
+    display: none;
+}
+
+/* DCI/ Telefonia Adm */
+.atendedorAutomatico, .entroncamentoDigitalE1Adm, .gravadorADM, .infraestruturaTelefonia,
+.pabx, .sistemaTelefonico, .tarifador, .terminaisTelefonicos{
+    display: none;
+}
+
+/* Categorias do hardware */
+.atividadesProAtivas, .dataShow, .desktop, .eventos, .impressora, .impressoraCorporativa,
+.impressoraHP, .impressoraLexMark, .ipad, .monitor, .netbook, .notbook, .notebookLenovo,
+.periferico, .scanner, .servidor, .servidorVirtual, .storange, .thinClient{
+    display: none;
+}
+
+/*  Categorias Plataformas móveis */
+.agendamentoManutencao, .atrelamentoVTR, .gerenciadorTMD, .projetoRadar, .tmd, .tpd{
+    display: none;
+}
+
+/*  Categorias Radiocomunicação */
+.camerasMonitoramentoSites, .copomSPDespacho, .gravadorDespacho, .gravadorNice,
+.manutencaoCorretiva, .manutencaoPreventiva, .radioComunicacaoBase, .radioComunicacaoHT,
+.radioComunicacaoVTR, .siteRepeticao{
+    display: none;
+}
+
+/* Categorias Rede */
+.ambiente, .arcSight, .caPerformanceMonitor, .caSpectrum, .cabeamento, .captivePortal,
+.cmdo, .conexoesEntrantes, .dhcp, .dns, .documentacao, .duo, .equipamentos, 
+.equipamentosRadioDigital, .equipamentosRedeDatacenter, .firewall, .gerencia, 
+.grafana, .intranet, .ise, .linkIntragovAlta, .linkIntragovAltaSites, .linkIntragovBaixa,
+.linkIntragovCameras, .linkIntragovMedia, .linkIntragovInterna, .linkIntragovSolicitacao, 
+.netbox, .noc, .paginasIntranetPMESP, .poc, .proatividade, .projetoTecnico, .radio,
+.relatorios, .reuniao, .roteador, .segurancaGeral, .servidorClusterRede, .servidorArquivos, 
+.servidoresRede, .spark, .swithAcesso, .swithCore, .swithDistribuicaoServidores, .treinamento,
+.troubleshooting, .umbrella, .vistoria, .vpn, .wifi, .zabbix{
+    display: none;
+}
+
+/* Categoria Segurança no Active Directory */
+.auditoria{
+    display: none;
+}
+
+/* Categoria Servidor */
+.aumentoCapacidade, .certificadoDigital, .devops, .hospedagemAplicacoes, .hospedagemPaginaIntranet,
+.servidorArquivos, .servidorImpressao, .windows{
+    display: none;
+}
+
+/* Anexos */
+.boxAnexos{
+    margin-top: 18%;
+}
+
+.file-upload {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px;
+    background: #888;
+    color: white;
+    border-radius: 10px;
+    transition: background 0.3s;
+    width: 60%;
+    margin-left: 20%;
+    flex-wrap: wrap; /* Permite que o texto quebre */
+    text-align: center;
+}
+@media (max-width: 600px) {
+    .file-upload span { 
+        display: none; /* Esconde o texto */
+    }
+}
+
+
+.file-upload:hover {
+    background: #999;
+}
+
+.file-upload img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.file-upload input {
+    display: none;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.file-link {
+    cursor: pointer;
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+.file-link:hover {
+    color: #0056b3;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+    max-width: 800px;
+    max-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img, .modal iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+li button{
+    cursor: pointer;
+    outline: none;
+    background-color: #ff2929;
+    color: #fff;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    border-radius: 50%;
+    border: none;
+}
+
+li button:hover{
+    background-color: #fc5353;
+}
+
+.btnSalvarChamado, .alterarChamado{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 2%; /* Espaço inferior */
+    height: 3rem; /* Altura do botão */
+    background-color: #34d142 ; /* Cor de fundo do botão */
+    font-size: clamp(8px, 4vw, 20px); /* Tamanho de fonte flexível */
+    color: #000; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Aponta que é um botão clicável */
+    margin-bottom: 8%; /* Espaço inferior */
+    outline: none !important; /* Remove o contorno ao clicar */
+    font-weight: 600; /* Peso da fonte */
+    border-radius: 10px;
+}
+
+
+/* Estilos para quando o botão de cadastro é pressionado ou quando o cursor está sobre ele */
+.btnSalvarChamado:hover, .btnSalvarChamado:active,
+.alterarChamado:hover, .btnSalvarChamado:active {
+    background-color: #47e754; /* Cor de fundo quando pressionado ou em hover */
+    color: #000; /* Cor do texto */
+    font-size: clamp(8px, 4vw, 19px); /* Ajusta o tamanho da fonte */
+}

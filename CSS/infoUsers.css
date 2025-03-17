@@ -1,0 +1,162 @@
+.container-info-users{
+    width: 50%; /* Largura do container */
+    height: auto; /* Altura automática para ajustar o conteúdo */
+    margin-top: 6%; /* Espaço superior */
+    margin-left: 25%; /* Centraliza o container horizontalmente */
+    background-color: #444; /* Cor de fundo escura */
+    border-radius: 14px; /* Bordas arredondadas */
+    box-shadow: 10px 8px 3px 0 rgba(0, 0, 0, 0.5); /* Sombra no container */
+    margin-bottom: 6%; /* Espaço inferior */
+    display: flex;
+}
+
+.box-info-users{
+    width: 80%;
+    margin-left: 10%;
+}
+
+/* Estilos para a linha separadora dentro do cadastro */
+.box-container-cadastro hr{
+    margin: 30px 15px; /* Margens ao redor da linha */
+    
+}
+
+/* Estilos para o título do cadastro */
+.container-info-users h3{
+    font-size: clamp(8px, 3vw, 26px); /* Tamanho de fonte flexível */
+    font-weight: 600; /* Peso da fonte */
+    color: #fff; /* Cor do texto */
+    margin-top: 10%;
+    margin-bottom: 8%;
+}
+
+.lblCad{
+    display: flex;
+    font-size: clamp(8px, 4vw, 20px); /* Tamanho de fonte flexível */
+    font-weight: 500; /* Peso da fonte */
+    color: #fff; /* Cor da fonte */
+    width: auto;
+    margin-bottom: 5px;
+}
+
+.inputDados, .inputDadosNumber{
+    margin-bottom: 4%; /* Espaço inferior */
+    color:#333; /* Cor da fonte */
+    font-size: clamp(8px, 4vw, 18px); /* Tamanho de fonte flexível */
+    padding: 1px 8px; /* Espaçamento interno */
+    font-weight: 400; /* Peso da fonte */
+    border: 3px solid #333; /* Borda ao redor do campo */
+    box-shadow: 0px 3px 0.5rem #333; /* Sombra ao redor do campo */
+    outline: none; /* Remove o contorno */
+    width: 80%; /* Largura do campo */
+    height: 2.2rem; /* Altura do campo */
+}
+
+.inputDadosNumber{
+    width: 50%; /* Largura reduzida */
+}
+
+/* Estilos para o botão de cadastro */
+.btnAlterar{
+    width: 40%; /* Largura do botão */
+    height: 2.5rem; /* Altura do botão */
+    background-color: #fff ; /* Cor de fundo do botão */
+    font-size: clamp(8px, 2vw, 20px); /* Tamanho de fonte flexível */
+    color: #000; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Aponta que é um botão clicável */
+    margin-top: 5%; /* Espaço superior */
+    margin-left: 30%; /* Centraliza o botão */
+    margin-bottom: 8%; /* Espaço inferior */
+    outline: none !important; /* Remove o contorno ao clicar */
+    font-weight: 600; /* Peso da fonte */
+}
+
+/* Estilos para quando o botão de cadastro é pressionado ou quando o cursor está sobre ele */
+.btnAlterar:hover, .btnAlterar:active {
+    background-color: #dbdada; /* Cor de fundo quando pressionado ou em hover */
+    color: #000; /* Cor do texto */
+    font-size: clamp(8px, 4vw, 19px); /* Ajusta o tamanho da fonte */
+}
+
+/* --------------------- SENHA --------------------- */
+
+.container-cadastro{
+    width: 40%; /* Largura do container */
+    height: auto; /* Altura automática para ajustar o conteúdo */
+    margin-top: 6%; /* Espaço superior */
+    margin-left: 30%; /* Centraliza o container horizontalmente */
+    background-color: #444; /* Cor de fundo escura */
+    border-radius: 14px; /* Bordas arredondadas */
+    box-shadow: 10px 8px 3px 0 rgba(0, 0, 0, 0.5); /* Sombra no container */
+    margin-bottom: 6%; /* Espaço inferior */
+    display: flex;
+}
+
+.box-alterar-senha{
+    width: 60%;
+    margin-left: 20%;
+}
+
+/* Estilos para a linha separadora dentro do cadastro */
+.container-cadastro hr{
+    margin: 30px 15px; /* Margens ao redor da linha */
+    
+}
+
+/* Estilos para o título do cadastro */
+.box-alterar-senha h3{
+    font-size: clamp(8px, 3vw, 26px); /* Tamanho de fonte flexível */
+    font-weight: 600; /* Peso da fonte */
+    color: #fff; /* Cor do texto */
+    margin-top: 12%;
+    margin-bottom: 12%;
+}
+
+.lblCad{
+    display: flex;
+    font-size: clamp(8px, 4vw, 20px); /* Tamanho de fonte flexível */
+    font-weight: 500; /* Peso da fonte */
+    color: #fff; /* Cor da fonte */
+    width: auto;
+    margin-bottom: 5px;
+    margin-top: px;
+}
+
+
+.inputDadosSenha{
+    margin-bottom: 8%; /* Espaço inferior */
+    color:#333; /* Cor da fonte */
+    font-size: clamp(8px, 4vw, 18px); /* Tamanho de fonte flexível */
+    padding: 1px 8px; /* Espaçamento interno */
+    font-weight: 400; /* Peso da fonte */
+    border: 3px solid #333; /* Borda ao redor do campo */
+    box-shadow: 0px 3px 0.5rem #333; /* Sombra ao redor do campo */
+    outline: none; /* Remove o contorno */
+    width: 100%; /* Largura do campo */
+    height: 2.2rem; /* Altura do campo */
+}
+
+
+/* Estilos para o botão de cadastro */
+.btnAlterarSenha{
+    width: 40%; /* Largura do botão */
+    height: 2.5rem; /* Altura do botão */
+    background-color: #fff ; /* Cor de fundo do botão */
+    font-size: clamp(8px, 2vw, 20px); /* Tamanho de fonte flexível */
+    color: #000; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Aponta que é um botão clicável */
+    margin-top: 8%; /* Espaço superior */
+    margin-left: 30%; /* Centraliza o botão */
+    margin-bottom: 10%; /* Espaço inferior */
+    outline: none !important; /* Remove o contorno ao clicar */
+    font-weight: 600; /* Peso da fonte */
+}
+
+/* Estilos para quando o botão de cadastro é pressionado ou quando o cursor está sobre ele */
+.btnAlterarSenha:hover, .btnAlterarSenha:active {
+    background-color: #dbdada; /* Cor de fundo quando pressionado ou em hover */
+    color: #000; /* Cor do texto */
+    font-size: clamp(8px, 4vw, 19px); /* Ajusta o tamanho da fonte */
+}

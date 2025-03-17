@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16"  href="Img/policia-militar-sp-logo.png">
+    <meta name="author" content="Nicolas de Almeida Sousa">
+    <meta name="author" content="Weasley Corrêa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NW</title>
+
+    <link rel="stylesheet" href="CSS/loginCad.css">
+    <link rel="stylesheet" href="CSS/alert.css">
+    <script src="JS/padrao.js"></script>
+</head>
+<body>
+    <div class="boxAlertError">
+        <h4>Houve tal coisa inesperada: <span>Erro X</span></h4>
+    </div>
+
+    <div class="boxAlertSucess">
+        <h4>Cadastro realizado com: <span>Exito</span></h4>
+    </div>
+
+    <div class="containerLoginCad">
+        <img src="Img/policia-militar-sp-logo.png" alt="">
+
+        <div class="box-container-login">
+            <label for="Login" class="lblEntrar">Login: </label>
+            <input type="text" name="" class="inputEntrar" id="" placeholder="Digite seu CPF..." required>
+
+            <label for="Senha" class="lblEntrar">Senha: </label>
+            <input type="text" name="" class="inputEntrar" id="" placeholder="Digite sua senha..." required>
+
+            <button class="btnEntrar" onclick="Entrar()">Entrar</button><br>
+
+            <div class="linkCad">
+                <a href="#" class="linkCriarCad" onclick="Cadastro()">Criar Cadastro</a>
+            </div>
+        </div>
+
+        <div class="box-container-cadastro">
+
+            <center><h3>Cadastro de Analista </h3></center>
+
+            <hr>
+
+            <label for="nome" class="lblCad">Nome Completo: </label>
+            <input type="text" name="" class="inputDados" id="" placeholder="Digite seu Nome Completo..." required>
+
+            <label for="email" class="lblCad">E-mail: </label>
+            <input type="email" name="" class="inputDados" id="" placeholder="Digite seu email..." required>
+
+            <label for="cpf" class="lblCad">CPF: </label>
+            <input type="text" id="cpf" name="cpf" maxlength="14" oninput="mascararCPF(this)" onblur="validarCPF(this)" class="inputDadosNumber" placeholder="Digite seu CPF..." required><br>
+
+
+            <label for="telefone" class="lblCad">Telefone: </label>
+            <input type="tel" name="" class="inputDadosNumber" id="" min="8" max="11" placeholder="(xx) xxxxx-xxxx" required><br>
+
+            <label for="dataNasc" class="lblCad">Data de Nasc.: </label>
+            <input type="date" name="" class="inputDadosNumber" id=""  required>
+
+
+
+            <hr>
+
+            <center><h3>Endereço </h3><br><br><br></center>
+
+            <label for="cep" class="lblCad">CEP: </label>
+            <input type="text" id="cep" name="cep" maxlength="9" oninput="mascararCEP(this); buscarCEP(this.value);" class="inputDadosNumber" placeholder="Digite seu CEP..." required><br>
+
+
+            <label for="rua" class="lblCad">Longradouro/Rua: </label>
+            <input type="text" name="logradouro" class="inputDados" id="logradouro" placeholder="Digite seu Endereço..." required>
+
+            <label for="numero" class="lblCad">Nº: </label>
+            <input type="number" name="" class="inputDadosNumber" id="" placeholder="Ex: 123" required><br>
+
+            <label for="bairro" class="lblCad">Bairro: </label>
+            <input type="text" name="bairro" class="inputDados" id="bairro" placeholder="Digite seu Bairro ..." required>
+
+            <label for="cidade" class="lblCad">Cidade: </label>
+            <input type="text" name="cidade" class="inputDados" id="cidade" placeholder="Digite sua cidade ..." required>
+
+            <label for="uf" class="lblCad">UF: </label>
+            <input type="text" name="estado" class="inputDadosNumber" id="estado" placeholder="Ex: SP" required><br>
+
+            <hr>
+
+            <center><h3>Senha </h3><br><br><br></center>
+
+            <label for="senha1" class="lblCad">Digite sua senha: </label>
+            <input type="text" name="" class="inputDadosSenha" id="" placeholder="Digite sua senha..."  required>
+            
+            <label for="senha2" class="lblCad">Repita a senha: </label>
+            <input type="text" name="" class="inputDadosSenha" id="" placeholder="Repita sua senha..."  required>
+
+            <button class="btnCadastrar" onclick="Entrar()">Cadastrar-se</button>
+
+        </div>
+    </div>
+
+
+
+    
+</body>
+</html>
